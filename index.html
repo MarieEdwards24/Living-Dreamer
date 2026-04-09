@@ -133,13 +133,6 @@ body {
   border-left-color: #6C8F7E;
 }
 
-.sidebar-nav li a.active {
-  color: #FAF9F6;
-  font-weight: 500;
-  background: rgba(250,249,246,0.1);
-  border-left-color: #6C8F7E;
-}
-
 .p-dot {
   width: 8px; height: 8px;
   border-radius: 50%;
@@ -172,7 +165,7 @@ body {
   margin-bottom: 10px;
 }
 
-.page-title {  font-weight: 600;
+.page-title {
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 42px;
   font-weight: 400;
@@ -201,7 +194,7 @@ body {
   margin-bottom: 8px;
 }
 
-.persona-name {  font-weight: 600;
+.persona-name {
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 38px;
   font-weight: 400;
@@ -273,43 +266,44 @@ body {
   gap: 16px;
 }
 
-.insight-card { background: #FAF9F6; border: 1px solid rgba(30,58,52,0.12); border-radius: 12px; padding: 1.5rem; }
-  background: #E9E4D8;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 1.25rem;
+.insight-card {
+  background: #FAF9F6;
+  border: 1px solid rgba(30,58,52,0.12);
+  border-radius: 12px;
+  padding: 1.5rem;
 }
 
-.insight-label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #6C8F7E; margin-bottom: 10px; display: block; }
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
+.insight-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--text-tertiary);
-  margin-bottom: 8px;
+  color: #6C8F7E;
+  margin-bottom: 10px;
+  display: block;
 }
 
-.insight-text { font-size: 14px; color: #2E5048; line-height: 1.75; }
+.insight-text {
   font-size: 14px;
-  color: var(--text-secondary);
-  line-height: 1.65;
+  color: #2E5048;
+  line-height: 1.75;
 }
 
 /* QUOTE CARDS */
-.quote-card { background: #FAF9F6; border-left: 3px solid #6C8F7E; border-radius: 0 10px 10px 0; padding: 1.25rem 1.5rem 1.25rem 2rem; margin-bottom: 14px; }
-  background: #E9E4D8;
-  border-left: 3px solid #F2B880;
-  border-radius: 0 8px 8px 0;
-  padding: 1.1rem 1.25rem;
-  margin-bottom: 10px;
+.quote-card {
+  background: #FAF9F6;
+  border-left: 3px solid #6C8F7E;
+  border-radius: 0 10px 10px 0;
+  padding: 1.25rem 1.5rem 1.25rem 2rem;
+  margin-bottom: 14px;
 }
 
-.quote-text { font-size: 17px; font-weight: 300; font-style: italic; color: #1E3A34; line-height: 1.6; }
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 18px;
+.quote-text {
+  font-size: 17px;
+  font-weight: 300;
   font-style: italic;
-  color: var(--text-primary);
-  line-height: 1.55;
+  color: #1E3A34;
+  line-height: 1.6;
 }
 
 /* EMOTION MAP */
@@ -328,21 +322,21 @@ body {
 .emotion-card.before { background: #FAF9F6; }
 .emotion-card.after { background: #EAF2EE; }
 
-.emotion-label { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+.emotion-label {
   font-size: 10px;
   font-weight: 500;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-bottom: 8px;
 }
 
-.emotion-card.before .emotion-label { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; } color: var(--text-tertiary); }
-.emotion-card.after .emotion-label { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; } color: var(--yes-text); }
+.emotion-card.before .emotion-label { color: var(--text-tertiary); }
+.emotion-card.after .emotion-label { color: var(--yes-text); }
 
-.emotion-text { font-size: 14px; line-height: 1.65; color: #1E3A34; }
+.emotion-text {
   font-size: 14px;
   line-height: 1.65;
-  color: var(--text-secondary);
+  color: #1E3A34;
 }
 
 /* TRUST TIMELINE */
@@ -401,9 +395,10 @@ body {
   margin-bottom: 8px;
 }
 
-.msg-text { font-weight: 300;
+.msg-text {
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 19px;
+  font-weight: 300;
   color: var(--text-primary);
   line-height: 1.55;
   margin-bottom: 8px;
@@ -424,25 +419,26 @@ body {
   gap: 12px;
 }
 
-.channel-card { border: 1px solid rgba(30,58,52,0.12); border-radius: 12px; padding: 1.5rem; background: #FAF9F6; }
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 1.1rem 1.25rem;
-  background: #E9E4D8;
+.channel-card {
+  border: 1px solid rgba(30,58,52,0.12);
+  border-radius: 12px;
+  padding: 1.5rem;
+  background: #FAF9F6;
 }
 
-.channel-name { font-size: 11px; font-weight: 600; color: #1E3A34; margin-bottom: 8px; letter-spacing: 0.06em; text-transform: uppercase; }
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--text-primary);
-  margin-bottom: 6px;
-  letter-spacing: 0.04em;
-}
-
-.channel-text { font-size: 13px; color: #2E5048; line-height: 1.75; }
-  font-size: 13px;
+.channel-name {
+  font-size: 11px;
+  font-weight: 600;
   color: #1E3A34;
-  line-height: 1.6;
+  margin-bottom: 8px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.channel-text {
+  font-size: 13px;
+  color: #2E5048;
+  line-height: 1.75;
 }
 
 /* TONE PILLS */
@@ -543,12 +539,11 @@ body {
 }
 
 .ov-core {
-  font-size: 13px;
-  color: var(--text-secondary);
-  line-height: 1.6;
   font-style: italic;
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 15px; 
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.6;
 }
 
 .ov-accent {
@@ -559,21 +554,21 @@ body {
 }
 
 /* PRINCIPLE BOX */
-.principle-box { background: #FAF9F6; border: 1px solid rgba(30,58,52,0.12); border-radius: 12px; padding: 1.5rem 1.75rem; margin-bottom: 16px; }
-  background: #E9E4D8;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 1.25rem 1.5rem;
-  margin-bottom: 10px;
+.principle-box {
+  background: #FAF9F6;
+  border: 1px solid rgba(30,58,52,0.12);
+  border-radius: 12px;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 16px;
 }
 
-.principle-text { font-size: 14px; color: #2E5048; line-height: 1.8; }
+.principle-text {
   font-size: 14px;
-  color: var(--text-secondary);
-  line-height: 1.65;
+  color: #2E5048;
+  line-height: 1.8;
 }
 
-/* HOME INTRO */
+/* HOME INTRO — FIXED: changed padding-bottom from 0 to 2.5rem */
 .home-intro {
   padding: 2.5rem 4rem 2.5rem;
   max-width: 720px;
@@ -612,42 +607,12 @@ body {
 
 /* RESPONSIVE */
 @media (max-width: 760px) {
-  .sidebar {
-  width: 280px;
-  min-width: 280px;
-  background: #1E3A34;
-  border-right: none;
-  padding: 2rem 0;
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-}
+  .sidebar { width: 100%; min-width: unset; height: auto; position: relative; }
   .insight-grid, .emotion-grid, .channel-grid, .say-grid { grid-template-columns: 1fr; }
-  .page-header, .persona-header, .tab-panel, .home-intro {
-  padding: 2.5rem 4rem 0;
-  max-width: 720px;
-}
-  .tab-nav {
-  display: flex;
-  gap: 0;
-  border-bottom: 1px solid rgba(30,58,52,0.1);
-  padding: 0 4rem;
-  background: var(--bg);
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  overflow-x: auto;
-}
-  .overview-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 18px;
-  padding: 2.5rem 4rem 4rem;
-}
-  .page-title {  font-weight: 600; font-size: 32px; }
+  .page-header, .persona-header, .tab-panel, .home-intro { padding: 1.5rem; }
+  .tab-nav { padding: 0 1rem; }
+  .overview-grid { padding: 1.5rem; }
+  .page-title { font-size: 32px; }
 }
 </style>
 </head>
@@ -1567,6 +1532,7 @@ body {
     </div>
   </div>
 </div>
+
 <!-- ONBOARDING FLOW -->
 <div class="section" id="section-onboarding">
   <div class="page-header">
@@ -1576,8 +1542,6 @@ body {
   </div>
 
   <div style="padding:2rem 3rem;max-width:960px">
-
-    <!-- STEP NAVIGATOR -->
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:2rem;flex-wrap:wrap">
       <button class="ob-step-btn on" onclick="showStep(0)" id="ob-btn-0" style="padding:7px 14px;border-radius:999px;border:1px solid rgba(30,58,52,0.2);background:#E9E4D8;color:#1E3A34;font-size:12px;font-weight:500;cursor:pointer;font-family:inherit">01 Welcome</button>
       <button class="ob-step-btn" onclick="showStep(1)" id="ob-btn-1" style="padding:7px 14px;border-radius:999px;border:1px solid rgba(30,58,52,0.15);background:transparent;color:#7A9490;font-size:12px;font-weight:400;cursor:pointer;font-family:inherit">02 First Question</button>
@@ -1587,72 +1551,37 @@ body {
       <button class="ob-step-btn" onclick="showStep(5)" id="ob-btn-5" style="padding:7px 14px;border-radius:999px;border:1px solid rgba(30,58,52,0.15);background:transparent;color:#7A9490;font-size:12px;font-weight:400;cursor:pointer;font-family:inherit">06 Follow-up</button>
       <button class="ob-step-btn" onclick="showStep(6)" id="ob-btn-6" style="padding:7px 14px;border-radius:999px;border:1px solid rgba(30,58,52,0.15);background:transparent;color:#7A9490;font-size:12px;font-weight:400;cursor:pointer;font-family:inherit">07 Non-Negotiables</button>
     </div>
-
-    <!-- PROGRESS BAR -->
     <div style="height:3px;background:#E9E4D8;border-radius:2px;margin-bottom:2rem">
       <div id="ob-progress" style="height:3px;background:#6C8F7E;border-radius:2px;width:14%;transition:width 0.3s ease"></div>
     </div>
 
-    <!-- STEP 01 -->
     <div class="ob-step on" id="ob-step-0">
       <div class="section-title" style="color:#6C8F7E">Step 01 of 07   Welcome</div>
       <div class="principle-box" style="margin-bottom:1.25rem"><div class="principle-text">The first message sets everything. The tone here determines whether this person stays or leaves. No excitement, no urgency, no "let's get started." Just genuine warmth and complete unhurriedness. The arrival itself is the moment worth honoring.</div></div>
-      <div class="msg-card">
-        <div class="msg-type" style="color:#6C8F7E">Immediately after sign-up</div>
-        <div class="msg-text">"You're here. That already means something. Take your time   there's no rush, no right way to start, and nothing you need to prove. This space is yours."</div>
-        <div class="msg-note">Never "welcome to the community" or "let's get started." Never celebrate loudly. Let the space breathe.</div>
-      </div>
-      <div class="msg-card">
-        <div class="msg-type" style="color:#6C8F7E">24 hours later   if no action taken</div>
-        <div class="msg-text">"No rush. We're here when you're ready. Some people need a few days just to settle in   that's completely normal. Your dream isn't going anywhere."</div>
-        <div class="msg-note">Never "we noticed you haven't started yet." Never create absence anxiety. Patience is the product at this stage.</div>
-      </div>
-      <div style="display:flex;justify-content:flex-end;margin-top:1.5rem">
-        <button onclick="showStep(1)" style="padding:10px 24px;background:#1E3A34;color:#FAF9F6;border:none;border-radius:999px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit">Next step</button>
-      </div>
+      <div class="msg-card"><div class="msg-type" style="color:#6C8F7E">Immediately after sign-up</div><div class="msg-text">"You're here. That already means something. Take your time   there's no rush, no right way to start, and nothing you need to prove. This space is yours."</div><div class="msg-note">Never "welcome to the community" or "let's get started." Never celebrate loudly. Let the space breathe.</div></div>
+      <div class="msg-card"><div class="msg-type" style="color:#6C8F7E">24 hours later   if no action taken</div><div class="msg-text">"No rush. We're here when you're ready. Some people need a few days just to settle in   that's completely normal. Your dream isn't going anywhere."</div><div class="msg-note">Never "we noticed you haven't started yet." Never create absence anxiety. Patience is the product at this stage.</div></div>
+      <div style="display:flex;justify-content:flex-end;margin-top:1.5rem"><button onclick="showStep(1)" style="padding:10px 24px;background:#1E3A34;color:#FAF9F6;border:none;border-radius:999px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit">Next step</button></div>
     </div>
 
-    <!-- STEP 02 -->
     <div class="ob-step" id="ob-step-1" style="display:none">
       <div class="section-title" style="color:#6C8F7E">Step 02 of 07   The First Question</div>
       <div class="principle-box" style="margin-bottom:1.25rem"><div class="principle-text">The single most important moment in the entire onboarding. This question must feel like an invitation, not an intake form. It should be the kind of question that makes someone pause, breathe, and feel seen before they've even answered it.</div></div>
-      <div class="msg-card">
-        <div class="msg-type" style="color:#6C8F7E">The opening question</div>
-        <div class="msg-text">"If you could move toward one thing   something real, something yours   what would it be? Don't worry about being precise. Just let something come."</div>
-        <div class="msg-note">"Don't worry about being precise" is doing critical work. It lowers the barrier without lowering the meaning. Whatever they write is right.</div>
-      </div>
-      <div class="msg-card">
-        <div class="msg-type" style="color:#6C8F7E">Immediately after they answer</div>
-        <div class="msg-text">"That's real. Thank you for naming it. Now let's begin to give it some shape."</div>
-        <div class="msg-note">"That's real" is the most important phrase in dreamsedge's vocabulary. Short, sincere, forward. It validates without inflating.</div>
-      </div>
+      <div class="msg-card"><div class="msg-type" style="color:#6C8F7E">The opening question</div><div class="msg-text">"If you could move toward one thing   something real, something yours   what would it be? Don't worry about being precise. Just let something come."</div><div class="msg-note">"Don't worry about being precise" is doing critical work. It lowers the barrier without lowering the meaning. Whatever they write is right.</div></div>
+      <div class="msg-card"><div class="msg-type" style="color:#6C8F7E">Immediately after they answer</div><div class="msg-text">"That's real. Thank you for naming it. Now let's begin to give it some shape."</div><div class="msg-note">"That's real" is the most important phrase in dreamsedge's vocabulary. Short, sincere, forward. It validates without inflating.</div></div>
       <div style="display:flex;justify-content:space-between;margin-top:1.5rem">
         <button onclick="showStep(0)" style="padding:10px 24px;background:transparent;color:#3D5C55;border:1px solid rgba(30,58,52,0.2);border-radius:999px;font-size:13px;cursor:pointer;font-family:inherit">Previous</button>
         <button onclick="showStep(2)" style="padding:10px 24px;background:#1E3A34;color:#FAF9F6;border:none;border-radius:999px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit">Next step</button>
       </div>
     </div>
 
-    <!-- STEP 03 -->
     <div class="ob-step" id="ob-step-2" style="display:none">
       <div class="section-title" style="color:#6C8F7E">Step 03 of 07   Dream Articulation</div>
       <div class="principle-box" style="margin-bottom:1.25rem"><div class="principle-text">A short sequence of questions that helps the person move from a feeling or vague direction to something named and owned. Never more than three questions in a session. Always framed as exploration, never as a form to complete.</div></div>
       <div class="insight-grid">
-        <div class="insight-card">
-          <div class="insight-label">Question A</div>
-          <div class="insight-text">"When you imagine moving toward this   what does it feel like? Not what it looks like. What it feels like."</div>
-        </div>
-        <div class="insight-card">
-          <div class="insight-label">Question B</div>
-          <div class="insight-text">"What's one small thing that would tell you this is real and moving? Not the whole dream   just one signal."</div>
-        </div>
-        <div class="insight-card">
-          <div class="insight-label">Question C</div>
-          <div class="insight-text">"What's been in the way? Not to dwell there   just to name it, so we can move past it together."</div>
-        </div>
-        <div class="insight-card">
-          <div class="insight-label">After all three answered</div>
-          <div class="insight-text">"You've just done something most people never do. You gave your dream a name and a direction. That's not small. That's everything."</div>
-        </div>
+        <div class="insight-card"><div class="insight-label">Question A</div><div class="insight-text">"When you imagine moving toward this   what does it feel like? Not what it looks like. What it feels like."</div></div>
+        <div class="insight-card"><div class="insight-label">Question B</div><div class="insight-text">"What's one small thing that would tell you this is real and moving? Not the whole dream   just one signal."</div></div>
+        <div class="insight-card"><div class="insight-label">Question C</div><div class="insight-text">"What's been in the way? Not to dwell there   just to name it, so we can move past it together."</div></div>
+        <div class="insight-card"><div class="insight-label">After all three answered</div><div class="insight-text">"You've just done something most people never do. You gave your dream a name and a direction. That's not small. That's everything."</div></div>
       </div>
       <div style="display:flex;justify-content:space-between;margin-top:1.5rem">
         <button onclick="showStep(1)" style="padding:10px 24px;background:transparent;color:#3D5C55;border:1px solid rgba(30,58,52,0.2);border-radius:999px;font-size:13px;cursor:pointer;font-family:inherit">Previous</button>
@@ -1660,12 +1589,9 @@ body {
       </div>
     </div>
 
-    <!-- STEP 04   PERSONA SPLIT -->
     <div class="ob-step" id="ob-step-3" style="display:none">
       <div class="section-title" style="color:#F2B880">Step 04 of 07   Persona Split</div>
-      <div class="principle-box" style="margin-bottom:1.25rem"><div class="principle-text">Based on what they've shared in Steps 02 and 03, the experience adapts. The split is not a dramatic fork   it's a subtle shift in language, pacing, and encouragement that makes the person feel genuinely understood. These messages replace generic encouragement from this point forward.</div></div>
-
-      <!-- PERSONA TABS FOR SPLIT -->
+      <div class="principle-box" style="margin-bottom:1.25rem"><div class="principle-text">Based on what they've shared in Steps 02 and 03, the experience adapts. The split is not a dramatic fork   it's a subtle shift in language, pacing, and encouragement that makes the person feel genuinely understood.</div></div>
       <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem">
         <button class="split-btn on" onclick="showSplit(0)" style="padding:6px 14px;border-radius:999px;border:1px solid var(--p1);background:var(--p1-light);color:var(--p1);font-size:12px;font-weight:500;cursor:pointer;font-family:inherit">Purpose-Seeking Pro</button>
         <button class="split-btn" onclick="showSplit(1)" style="padding:6px 14px;border-radius:999px;border:1px solid rgba(30,58,52,0.15);background:transparent;color:#7A9490;font-size:12px;cursor:pointer;font-family:inherit">Values-Based Coworking</button>
@@ -1673,149 +1599,70 @@ body {
         <button class="split-btn" onclick="showSplit(3)" style="padding:6px 14px;border-radius:999px;border:1px solid rgba(30,58,52,0.15);background:transparent;color:#7A9490;font-size:12px;cursor:pointer;font-family:inherit">Creative Reawakening</button>
         <button class="split-btn" onclick="showSplit(4)" style="padding:6px 14px;border-radius:999px;border:1px solid rgba(30,58,52,0.15);background:transparent;color:#7A9490;font-size:12px;cursor:pointer;font-family:inherit">Continuing Education</button>
       </div>
-
       <div class="split-panel on" id="split-0">
-        <div class="msg-card">
-          <div class="msg-type" style="color:var(--p1)">Quiet Achiever   encouragement message</div>
-          <div class="msg-text">"You don't have to move fast. The people who get there are rarely the ones who rushed. Take the next step when it feels right   not when it feels urgent. We'll be here."</div>
-          <div class="msg-note">Pacing: Slow and spacious. Never imply they're behind. Never introduce a timeline. The absence of urgency is the message.</div>
-        </div>
-        <div class="msg-card">
-          <div class="msg-type" style="color:var(--p1)">Check-in tone</div>
-          <div class="msg-text">"How's it feeling? No pressure to have moved yet   just checking in to say we're here and your dream is still waiting, exactly where you left it."</div>
-        </div>
+        <div class="msg-card"><div class="msg-type" style="color:var(--p1)">Quiet Achiever   encouragement message</div><div class="msg-text">"You don't have to move fast. The people who get there are rarely the ones who rushed. Take the next step when it feels right   not when it feels urgent. We'll be here."</div><div class="msg-note">Pacing: Slow and spacious. Never imply they're behind. Never introduce a timeline.</div></div>
+        <div class="msg-card"><div class="msg-type" style="color:var(--p1)">Check-in tone</div><div class="msg-text">"How's it feeling? No pressure to have moved yet   just checking in to say we're here and your dream is still waiting, exactly where you left it."</div></div>
       </div>
-
       <div class="split-panel" id="split-1" style="display:none">
-        <div class="msg-card">
-          <div class="msg-type" style="color:var(--p2)">Emerging Builder   encouragement message</div>
-          <div class="msg-text">"You've already started more times than most people ever will. That's not inconsistency   that's calibration. Now you have a process. Let's use it."</div>
-          <div class="msg-note">Reframes every prior attempt as an asset. Direct, forward, peer energy. Never imply they've been doing it wrong.</div>
-        </div>
-        <div class="msg-card">
-          <div class="msg-type" style="color:var(--p2)">Check-in tone</div>
-          <div class="msg-text">"What moved this week? Doesn't have to be big   even a thought that clarified something counts. Bring it here."</div>
-        </div>
+        <div class="msg-card"><div class="msg-type" style="color:var(--p2)">Emerging Builder   encouragement message</div><div class="msg-text">"You've already started more times than most people ever will. That's not inconsistency   that's calibration. Now you have a process. Let's use it."</div><div class="msg-note">Reframes every prior attempt as an asset. Direct, forward, peer energy.</div></div>
+        <div class="msg-card"><div class="msg-type" style="color:var(--p2)">Check-in tone</div><div class="msg-text">"What moved this week? Doesn't have to be big   even a thought that clarified something counts. Bring it here."</div></div>
       </div>
-
       <div class="split-panel" id="split-2" style="display:none">
-        <div class="msg-card">
-          <div class="msg-type" style="color:var(--p3)">Mid-Life Pivot   encouragement message</div>
-          <div class="msg-text">"Everything you've built brought you to this question. That's not wasted time   that's the foundation. The next chapter gets to stand on all of it."</div>
-          <div class="msg-note">Dignified and forward. Never reference crisis, loss, or starting over. Every word honors what came before.</div>
-        </div>
-        <div class="msg-card">
-          <div class="msg-type" style="color:var(--p3)">Check-in tone</div>
-          <div class="msg-text">"How is the question sitting with you? There's no wrong answer here   just your answer, developing in its own time."</div>
-        </div>
+        <div class="msg-card"><div class="msg-type" style="color:var(--p3)">Mid-Life Pivot   encouragement message</div><div class="msg-text">"Everything you've built brought you to this question. That's not wasted time   that's the foundation. The next chapter gets to stand on all of it."</div><div class="msg-note">Dignified and forward. Never reference crisis, loss, or starting over.</div></div>
+        <div class="msg-card"><div class="msg-type" style="color:var(--p3)">Check-in tone</div><div class="msg-text">"How is the question sitting with you? There's no wrong answer here   just your answer, developing in its own time."</div></div>
       </div>
-
       <div class="split-panel" id="split-3" style="display:none">
-        <div class="msg-card">
-          <div class="msg-type" style="color:var(--p4)">Creative Reawakening   encouragement message</div>
-          <div class="msg-text">"This is the space where you come back to yourself. No audience, no performance, no pressure to be further along than you are. Just the work and a community that gets it."</div>
-          <div class="msg-note">Precise, structured, respects their intelligence. Lead with the framework, let the warmth follow.</div>
-        </div>
-        <div class="msg-card">
-          <div class="msg-type" style="color:var(--p4)">Check-in tone</div>
-          <div class="msg-text">"What did you create or return to this week? Even something small counts. Especially something small."</div>
-        </div>
+        <div class="msg-card"><div class="msg-type" style="color:var(--p4)">Creative Reawakening   encouragement message</div><div class="msg-text">"This is the space where you come back to yourself. No audience, no performance, no pressure to be further along than you are. Just the work and a community that gets it."</div></div>
+        <div class="msg-card"><div class="msg-type" style="color:var(--p4)">Check-in tone</div><div class="msg-text">"What did you create or return to this week? Even something small counts. Especially something small."</div></div>
       </div>
-
       <div class="split-panel" id="split-4" style="display:none">
-        <div class="msg-card">
-          <div class="msg-type" style="color:var(--p5)">Continuing Education   encouragement message</div>
-          <div class="msg-text">"The work has been waiting for you. Not judging, not fading   just waiting. You're here now. That's the only condition that ever mattered. Let's begin."</div>
-          <div class="msg-note">Intimate and lyrical. Sacred without being precious. The beginning is the win   not the output.</div>
-        </div>
-        <div class="msg-card">
-          <div class="msg-type" style="color:var(--p5)">Check-in tone</div>
-          <div class="msg-text">"Did you show up for the work this week? Even once, even briefly   that counts. Tell us what happened."</div>
-        </div>
+        <div class="msg-card"><div class="msg-type" style="color:var(--p5)">Continuing Education   encouragement message</div><div class="msg-text">"The work has been waiting for you. Not judging, not fading   just waiting. You're here now. That's the only condition that ever mattered. Let's begin."</div></div>
+        <div class="msg-card"><div class="msg-type" style="color:var(--p5)">Check-in tone</div><div class="msg-text">"Did you show up for the work this week? Even once, even briefly   that counts. Tell us what happened."</div></div>
       </div>
-
       <div style="display:flex;justify-content:space-between;margin-top:1.5rem">
         <button onclick="showStep(2)" style="padding:10px 24px;background:transparent;color:#3D5C55;border:1px solid rgba(30,58,52,0.2);border-radius:999px;font-size:13px;cursor:pointer;font-family:inherit">Previous</button>
         <button onclick="showStep(4)" style="padding:10px 24px;background:#1E3A34;color:#FAF9F6;border:none;border-radius:999px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit">Next step</button>
       </div>
     </div>
 
-    <!-- STEP 05 -->
     <div class="ob-step" id="ob-step-4" style="display:none">
       <div class="section-title" style="color:#6C8F7E">Step 05 of 07   First Real Move</div>
       <div class="principle-box" style="margin-bottom:1.25rem"><div class="principle-text">The bridge between articulation and action. One small, named, time-bound move. Never a plan. Never a goal. Just one thing that makes the dream slightly more real in the next 48 hours.</div></div>
-      <div class="msg-card">
-        <div class="msg-type" style="color:#6C8F7E">Prompt to name one action</div>
-        <div class="msg-text">"What's one thing you could do in the next 48 hours that would move you   even slightly   toward this? Not a plan. Just one thing. Name it here."</div>
-        <div class="msg-note">48 hours is deliberate. Long enough to feel achievable, short enough to keep momentum. "Not a plan" removes the pressure to have it all figured out.</div>
-      </div>
-      <div class="msg-card">
-        <div class="msg-type" style="color:#6C8F7E">After they name their move</div>
-        <div class="msg-text">"That's your next step. It's real now. We'll check in   not to hold you accountable, but to celebrate when you've done it. Go."</div>
-        <div class="msg-note">"Not to hold you accountable" removes the fear of failure entirely. The follow-up becomes a celebration, not a check-in.</div>
-      </div>
+      <div class="msg-card"><div class="msg-type" style="color:#6C8F7E">Prompt to name one action</div><div class="msg-text">"What's one thing you could do in the next 48 hours that would move you   even slightly   toward this? Not a plan. Just one thing. Name it here."</div><div class="msg-note">48 hours is deliberate. Long enough to feel achievable, short enough to keep momentum.</div></div>
+      <div class="msg-card"><div class="msg-type" style="color:#6C8F7E">After they name their move</div><div class="msg-text">"That's your next step. It's real now. We'll check in   not to hold you accountable, but to celebrate when you've done it. Go."</div><div class="msg-note">"Not to hold you accountable" removes the fear of failure entirely.</div></div>
       <div style="display:flex;justify-content:space-between;margin-top:1.5rem">
         <button onclick="showStep(3)" style="padding:10px 24px;background:transparent;color:#3D5C55;border:1px solid rgba(30,58,52,0.2);border-radius:999px;font-size:13px;cursor:pointer;font-family:inherit">Previous</button>
         <button onclick="showStep(5)" style="padding:10px 24px;background:#1E3A34;color:#FAF9F6;border:none;border-radius:999px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit">Next step</button>
       </div>
     </div>
 
-    <!-- STEP 06 -->
     <div class="ob-step" id="ob-step-5" style="display:none">
       <div class="section-title" style="color:#6C8F7E">Step 06 of 07   The 48-Hour Follow-Up</div>
       <div class="principle-box" style="margin-bottom:1.25rem"><div class="principle-text">Two paths. Both are forward. Whether they completed the step or not, the message is always the same in spirit: nothing is lost, the dream is still real, and the next move is waiting whenever they are.</div></div>
-      <div class="msg-card">
-        <div class="msg-type" style="color:#6C8F7E">If they completed the step</div>
-        <div class="msg-text">"You did it. That step was real and it counts. This is how dreams move   not all at once, but one real thing at a time. What's next?"</div>
-        <div class="msg-note">Celebrate quietly. No exclamation marks. No "amazing!" Just the simple, grounded acknowledgment that something real happened.</div>
-      </div>
-      <div class="msg-card">
-        <div class="msg-type" style="color:#6C8F7E">If they did not complete the step</div>
-        <div class="msg-text">"Life happens. The step is still there when you're ready. Nothing has been lost   the dream is exactly where you left it. Take it when you're ready."</div>
-        <div class="msg-note">Never "no worries" or "that's okay"   both carry implied judgment. "Nothing has been lost" is purely forward. No apology required, no guilt introduced.</div>
-      </div>
+      <div class="msg-card"><div class="msg-type" style="color:#6C8F7E">If they completed the step</div><div class="msg-text">"You did it. That step was real and it counts. This is how dreams move   not all at once, but one real thing at a time. What's next?"</div><div class="msg-note">Celebrate quietly. No exclamation marks. No "amazing!" Just grounded acknowledgment.</div></div>
+      <div class="msg-card"><div class="msg-type" style="color:#6C8F7E">If they did not complete the step</div><div class="msg-text">"Life happens. The step is still there when you're ready. Nothing has been lost   the dream is exactly where you left it. Take it when you're ready."</div><div class="msg-note">Never "no worries" or "that's okay" — both carry implied judgment.</div></div>
       <div style="display:flex;justify-content:space-between;margin-top:1.5rem">
         <button onclick="showStep(4)" style="padding:10px 24px;background:transparent;color:#3D5C55;border:1px solid rgba(30,58,52,0.2);border-radius:999px;font-size:13px;cursor:pointer;font-family:inherit">Previous</button>
         <button onclick="showStep(6)" style="padding:10px 24px;background:#1E3A34;color:#FAF9F6;border:none;border-radius:999px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit">Non-Negotiables</button>
       </div>
     </div>
 
-    <!-- STEP 07   NON NEGOTIABLES -->
     <div class="ob-step" id="ob-step-6" style="display:none">
       <div class="section-title" style="color:#6C8F7E">Step 07 of 07   Onboarding Non-Negotiables</div>
-      <div class="principle-box" style="margin-bottom:1.25rem"><div class="principle-text">These are the rules that apply to every message, every stage, every persona. They are not guidelines   they are the standard. If a message doesn't pass all of these, rewrite it before it ships.</div></div>
+      <div class="principle-box" style="margin-bottom:1.25rem"><div class="principle-text">These are the rules that apply to every message, every stage, every persona. They are not guidelines — they are the standard.</div></div>
       <div class="insight-grid">
-        <div class="insight-card">
-          <div class="insight-label">No urgency. Ever.</div>
-          <div class="insight-text">Not even subtle urgency. No "don't wait," no "now is the time," no countdown energy of any kind. Patience is the brand.</div>
-        </div>
-        <div class="insight-card">
-          <div class="insight-label">No absence shaming</div>
-          <div class="insight-text">Never reference what they haven't done. Only reference what's possible and waiting. The platform is always here   it never sulks.</div>
-        </div>
-        <div class="insight-card">
-          <div class="insight-label">No loud celebration</div>
-          <div class="insight-text">Quiet acknowledgment over big applause. "That's real" over "Amazing work!" The dream is serious   treat every step with seriousness.</div>
-        </div>
-        <div class="insight-card">
-          <div class="insight-label">No implied judgment</div>
-          <div class="insight-text">Phrases like "no worries" and "that's okay" carry judgment even when they mean kindness. Rewrite anything that implies something needed forgiving.</div>
-        </div>
-        <div class="insight-card">
-          <div class="insight-label">Always forward</div>
-          <div class="insight-text">Every message ends with an open door, not a closed loop. The question is always "what's next" not "did you do it."</div>
-        </div>
-        <div class="insight-card">
-          <div class="insight-label">One thing at a time</div>
-          <div class="insight-text">Never more than one ask per message. Never more than three questions per session. The space must stay spacious or it stops being a dream and starts being a task.</div>
-        </div>
+        <div class="insight-card"><div class="insight-label">No urgency. Ever.</div><div class="insight-text">Not even subtle urgency. No "don't wait," no "now is the time," no countdown energy of any kind. Patience is the brand.</div></div>
+        <div class="insight-card"><div class="insight-label">No absence shaming</div><div class="insight-text">Never reference what they haven't done. Only reference what's possible and waiting.</div></div>
+        <div class="insight-card"><div class="insight-label">No loud celebration</div><div class="insight-text">Quiet acknowledgment over big applause. "That's real" over "Amazing work!" The dream is serious.</div></div>
+        <div class="insight-card"><div class="insight-label">No implied judgment</div><div class="insight-text">Phrases like "no worries" and "that's okay" carry judgment even when they mean kindness.</div></div>
+        <div class="insight-card"><div class="insight-label">Always forward</div><div class="insight-text">Every message ends with an open door, not a closed loop.</div></div>
+        <div class="insight-card"><div class="insight-label">One thing at a time</div><div class="insight-text">Never more than one ask per message. Never more than three questions per session.</div></div>
       </div>
       <div style="display:flex;justify-content:space-between;margin-top:1.5rem">
         <button onclick="showStep(5)" style="padding:10px 24px;background:transparent;color:#3D5C55;border:1px solid rgba(30,58,52,0.2);border-radius:999px;font-size:13px;cursor:pointer;font-family:inherit">Previous</button>
         <button onclick="showStep(0)" style="padding:10px 24px;background:#6C8F7E;color:#FAF9F6;border:none;border-radius:999px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit">Start again</button>
       </div>
     </div>
-
   </div>
 </div>
 
@@ -1824,12 +1671,10 @@ body {
   <div class="page-header">
     <div class="page-eyebrow">dreamsedge Internal Reference</div>
     <div class="page-title">Prompt Guide</div>
-    <div class="page-desc">A practical reference for the content team. Use this before writing any copy   headlines, emails, in-app messages, social posts, or CTAs. Every piece of dreamsedge copy must pass the tests on this page before it ships.</div>
+    <div class="page-desc">A practical reference for the content team. Use this before writing any copy — headlines, emails, in-app messages, social posts, or CTAs. Every piece of dreamsedge copy must pass the tests on this page before it ships.</div>
   </div>
 
   <div style="padding:2rem 3rem;max-width:960px">
-
-    <!-- THE ONE TEST -->
     <div class="content-block">
       <div class="section-title">The one test</div>
       <div style="border:2px solid #6C8F7E;border-radius:12px;padding:1.5rem 2rem;background:#FAF9F6">
@@ -1837,45 +1682,27 @@ body {
         <div style="font-size:14px;color:#3D5C55;line-height:1.7">If yes, it can ship. If no, rewrite it. Every word, every message, every headline goes through this test first. There are no exceptions.</div>
       </div>
     </div>
-
-    <!-- BRAND VOICE -->
     <div class="content-block">
       <div class="section-title">Brand voice in practice</div>
       <div class="insight-grid">
-        <div class="insight-card">
-          <div class="insight-label">Warm, not gushing</div>
-          <div class="insight-text">Care is felt through restraint, not volume. "That's real." not "That's incredible!!"   The quieter the celebration, the more it means.</div>
-        </div>
-        <div class="insight-card">
-          <div class="insight-label">Precise, not rigid</div>
-          <div class="insight-text">Every word is chosen but nothing feels forced. If a sentence could be shorter and mean the same thing, make it shorter.</div>
-        </div>
-        <div class="insight-card">
-          <div class="insight-label">Invitational, not preachy</div>
-          <div class="insight-text">Open a door, never push someone through it. The copy creates the invitation   what happens next is always the person's choice.</div>
-        </div>
-        <div class="insight-card">
-          <div class="insight-label">Grounded, not esoteric</div>
-          <div class="insight-text">Spiritual depth is felt, never announced. No "manifest your destiny." No "align your energy." Language of light, grounded in lived reality.</div>
-        </div>
+        <div class="insight-card"><div class="insight-label">Warm, not gushing</div><div class="insight-text">Care is felt through restraint, not volume. "That's real." not "That's incredible!!" The quieter the celebration, the more it means.</div></div>
+        <div class="insight-card"><div class="insight-label">Precise, not rigid</div><div class="insight-text">Every word is chosen but nothing feels forced. If a sentence could be shorter and mean the same thing, make it shorter.</div></div>
+        <div class="insight-card"><div class="insight-label">Invitational, not preachy</div><div class="insight-text">Open a door, never push someone through it. The copy creates the invitation — what happens next is always the person's choice.</div></div>
+        <div class="insight-card"><div class="insight-label">Grounded, not esoteric</div><div class="insight-text">Spiritual depth is felt, never announced. No "manifest your destiny." Language of light, grounded in lived reality.</div></div>
       </div>
     </div>
-
-    <!-- COPY CHECKLIST -->
     <div class="content-block">
-      <div class="section-title">Copy checklist   run every piece through this</div>
+      <div class="section-title">Copy checklist</div>
       <div class="voice-notes">
         <div class="voice-note"><strong>1. Does it pull forward?</strong> Read the last sentence. Does it point somewhere or does it close a loop? Good dreamsedge copy always leaves a door open.</div>
-        <div class="voice-note"><strong>2. Is there any urgency?</strong> Check for: "now," "don't wait," "finally," "before it's too late," "last chance," or any countdown energy. Remove every instance.</div>
-        <div class="voice-note"><strong>3. Does it imply something is wrong?</strong> Check for: "stuck," "lost," "broken," "holding you back," "stopping you," "haven't yet." Replace with forward language.</div>
-        <div class="voice-note"><strong>4. Is the sentence shorter than it needs to be?</strong> Cut anything that doesn't carry weight. dreamsedge copy is spacious   white space in sentences, not just on the page.</div>
-        <div class="voice-note"><strong>5. Does it sound like dreamsedge?</strong> Read it out loud. If it sounds like any other self-help platform or like a marketer wrote it, rewrite it. dreamsedge has one voice: calm, warm, unhurried, and completely sincere. That voice belongs to the brand, not to any individual.</div>
-        <div class="voice-note"><strong>6. Is there a persona match?</strong> Check which persona this is written for and cross-reference the say/never say list in the persona section. One wrong word can break trust that took weeks to build.</div>
-        <div class="voice-note"><strong>7. Does it need an exclamation mark?</strong> The answer is almost always no. dreamsedge copy earns its energy through precision, not punctuation.</div>
+        <div class="voice-note"><strong>2. Is there any urgency?</strong> Check for: "now," "don't wait," "finally," "before it's too late." Remove every instance.</div>
+        <div class="voice-note"><strong>3. Does it imply something is wrong?</strong> Check for: "stuck," "lost," "broken," "holding you back." Replace with forward language.</div>
+        <div class="voice-note"><strong>4. Is the sentence shorter than it needs to be?</strong> Cut anything that doesn't carry weight.</div>
+        <div class="voice-note"><strong>5. Does it sound like dreamsedge?</strong> Read it out loud. Calm, warm, unhurried, completely sincere.</div>
+        <div class="voice-note"><strong>6. Is there a persona match?</strong> Cross-reference the say/never say list. One wrong word can break trust that took weeks to build.</div>
+        <div class="voice-note"><strong>7. Does it need an exclamation mark?</strong> The answer is almost always no.</div>
       </div>
     </div>
-
-    <!-- REWRITES TABLE -->
     <div class="content-block">
       <div class="section-title">Common rewrites</div>
       <div style="border:1px solid rgba(30,58,52,0.12);border-radius:10px;overflow:hidden">
@@ -1883,79 +1710,30 @@ body {
           <div style="font-size:11px;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;color:rgba(250,249,246,0.6)">Instead of</div>
           <div style="font-size:11px;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;color:rgba(250,249,246,0.6)">Use this</div>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;padding:12px 16px;border-bottom:1px solid rgba(30,58,52,0.08);background:#FAF9F6">
-          <div style="font-size:13px;color:#8B4513">"Start your journey today"</div>
-          <div style="font-size:13px;color:#1E3A34">"Begin when you're ready"</div>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;padding:12px 16px;border-bottom:1px solid rgba(30,58,52,0.08);background:#F0EDE4">
-          <div style="font-size:13px;color:#8B4513">"Don't let fear hold you back"</div>
-          <div style="font-size:13px;color:#1E3A34">"The next step is already there"</div>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;padding:12px 16px;border-bottom:1px solid rgba(30,58,52,0.08);background:#FAF9F6">
-          <div style="font-size:13px;color:#8B4513">"It's time to finally chase your dreams"</div>
-          <div style="font-size:13px;color:#1E3A34">"Your dream has been waiting. Now there's a place for it."</div>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;padding:12px 16px;border-bottom:1px solid rgba(30,58,52,0.08);background:#F0EDE4">
-          <div style="font-size:13px;color:#8B4513">"Join thousands of dreamers"</div>
-          <div style="font-size:13px;color:#1E3A34">"You don't have to do this alone"</div>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;padding:12px 16px;border-bottom:1px solid rgba(30,58,52,0.08);background:#FAF9F6">
-          <div style="font-size:13px;color:#8B4513">"No worries if you haven't started"</div>
-          <div style="font-size:13px;color:#1E3A34">"The dream is exactly where you left it"</div>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;padding:12px 16px;border-bottom:1px solid rgba(30,58,52,0.08);background:#F0EDE4">
-          <div style="font-size:13px;color:#8B4513">"Unlock your potential"</div>
-          <div style="font-size:13px;color:#1E3A34">"You already have everything you need"</div>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;padding:12px 16px;border-bottom:1px solid rgba(30,58,52,0.08);background:#FAF9F6">
-          <div style="font-size:13px;color:#8B4513">"Reinvent yourself"</div>
-          <div style="font-size:13px;color:#1E3A34">"Begin the next chapter"</div>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;padding:12px 16px;border-bottom:1px solid rgba(30,58,52,0.08);background:#F0EDE4">
-          <div style="font-size:13px;color:#8B4513">"Amazing work!"</div>
-          <div style="font-size:13px;color:#1E3A34">"That's real. It counts."</div>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;padding:12px 16px;background:#FAF9F6">
-          <div style="font-size:13px;color:#8B4513">"Follow your passion"</div>
-          <div style="font-size:13px;color:#1E3A34">"Move toward what's true for you"</div>
-        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;padding:12px 16px;border-bottom:1px solid rgba(30,58,52,0.08);background:#FAF9F6"><div style="font-size:13px;color:#8B4513">"Start your journey today"</div><div style="font-size:13px;color:#1E3A34">"Begin when you're ready"</div></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;padding:12px 16px;border-bottom:1px solid rgba(30,58,52,0.08);background:#F0EDE4"><div style="font-size:13px;color:#8B4513">"Don't let fear hold you back"</div><div style="font-size:13px;color:#1E3A34">"The next step is already there"</div></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;padding:12px 16px;border-bottom:1px solid rgba(30,58,52,0.08);background:#FAF9F6"><div style="font-size:13px;color:#8B4513">"It's time to finally chase your dreams"</div><div style="font-size:13px;color:#1E3A34">"Your dream has been waiting. Now there's a place for it."</div></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;padding:12px 16px;border-bottom:1px solid rgba(30,58,52,0.08);background:#F0EDE4"><div style="font-size:13px;color:#8B4513">"Join thousands of dreamers"</div><div style="font-size:13px;color:#1E3A34">"You don't have to do this alone"</div></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;padding:12px 16px;border-bottom:1px solid rgba(30,58,52,0.08);background:#FAF9F6"><div style="font-size:13px;color:#8B4513">"No worries if you haven't started"</div><div style="font-size:13px;color:#1E3A34">"The dream is exactly where you left it"</div></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;padding:12px 16px;border-bottom:1px solid rgba(30,58,52,0.08);background:#F0EDE4"><div style="font-size:13px;color:#8B4513">"Unlock your potential"</div><div style="font-size:13px;color:#1E3A34">"You already have everything you need"</div></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;padding:12px 16px;border-bottom:1px solid rgba(30,58,52,0.08);background:#FAF9F6"><div style="font-size:13px;color:#8B4513">"Reinvent yourself"</div><div style="font-size:13px;color:#1E3A34">"Begin the next chapter"</div></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;padding:12px 16px;border-bottom:1px solid rgba(30,58,52,0.08);background:#F0EDE4"><div style="font-size:13px;color:#8B4513">"Amazing work!"</div><div style="font-size:13px;color:#1E3A34">"That's real. It counts."</div></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;padding:12px 16px;background:#FAF9F6"><div style="font-size:13px;color:#8B4513">"Follow your passion"</div><div style="font-size:13px;color:#1E3A34">"Move toward what's true for you"</div></div>
       </div>
     </div>
-
-    <!-- TONE BY FORMAT -->
     <div class="content-block">
       <div class="section-title">Tone by format</div>
       <div class="channel-grid">
-        <div class="channel-card">
-          <div class="channel-name">In-app messages</div>
-          <div class="channel-text">Shortest format, highest stakes. One sentence where possible. Never more than three. Every word must earn its place. No filler warmth.</div>
-        </div>
-        <div class="channel-card">
-          <div class="channel-name">Email subject lines</div>
-          <div class="channel-text">Should feel like a quiet tap on the shoulder from someone who knows them. Never clickbait, never urgency. "Your dream has been patient." not "Don't miss this."</div>
-        </div>
-        <div class="channel-card">
-          <div class="channel-name">Email body</div>
-          <div class="channel-text">One idea per email. Conversational paragraphs, no bullet points. Read it out loud   if it sounds like a newsletter, rewrite it until it sounds like a letter.</div>
-        </div>
-        <div class="channel-card">
-          <div class="channel-name">Social captions</div>
-          <div class="channel-text">Instagram: single thought, spacious. LinkedIn: insight with an edge, forward-looking. Never post for volume. Post when there's something real to say.</div>
-        </div>
-        <div class="channel-card">
-          <div class="channel-name">CTAs</div>
-          <div class="channel-text">Should feel like an invitation, not a button. "Begin here." "Name your dream." "Take one step." Never "Sign up now" or "Get started today."</div>
-        </div>
-        <div class="channel-card">
-          <div class="channel-name">Error and edge states</div>
-          <div class="channel-text">Even when something goes wrong technically, the tone stays warm and unhurried. "Something got lost   let's try that again." Never cold system language.</div>
-        </div>
+        <div class="channel-card"><div class="channel-name">In-app messages</div><div class="channel-text">Shortest format, highest stakes. One sentence where possible. Never more than three. Every word must earn its place.</div></div>
+        <div class="channel-card"><div class="channel-name">Email subject lines</div><div class="channel-text">Should feel like a quiet tap on the shoulder. Never clickbait, never urgency. "Your dream has been patient." not "Don't miss this."</div></div>
+        <div class="channel-card"><div class="channel-name">Email body</div><div class="channel-text">One idea per email. Conversational paragraphs, no bullet points. Read it out loud — if it sounds like a newsletter, rewrite it.</div></div>
+        <div class="channel-card"><div class="channel-name">Social captions</div><div class="channel-text">Instagram: single thought, spacious. LinkedIn: insight with an edge, forward-looking. Never post for volume.</div></div>
+        <div class="channel-card"><div class="channel-name">CTAs</div><div class="channel-text">Should feel like an invitation, not a button. "Begin here." "Name your dream." Never "Sign up now."</div></div>
+        <div class="channel-card"><div class="channel-name">Error and edge states</div><div class="channel-text">Even when something goes wrong technically, the tone stays warm. "Something got lost — let's try that again."</div></div>
       </div>
     </div>
-
-    <!-- QUICK REFERENCE -->
     <div class="content-block">
-      <div class="section-title">Quick reference   words that belong and words that don't</div>
+      <div class="section-title">Quick reference</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
         <div class="say-card yes">
           <div class="say-label">dreamsedge vocabulary</div>
@@ -1985,7 +1763,6 @@ body {
         </div>
       </div>
     </div>
-
   </div>
 </div>
 
