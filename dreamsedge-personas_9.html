@@ -1,0 +1,2059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>dreamsedge   Persona & Messaging Framework</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500&display=swapdisplay=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FAF9F6;
+  --surface: #F4F1EA;
+  --surface2: #EDE9DF;
+  --border: rgba(30,58,52,0.1);
+  --border-med: rgba(30,58,52,0.2);
+  --text-primary: #1E3A34;
+  --text-secondary: #2E5048;
+  --text-tertiary: #6C8F7E;
+  --teal: #6C8F7E;
+  --teal-light: #EAF2EE;
+  --caramel: #F2B880;
+  --caramel-light: #FDF0E0;
+  --linen: #E9E4D8;
+  --slate: #1E3A34;
+  --porcelain: #FAF9F6;
+  --p1: #1E3A34;
+  --p1-light: #D4E2DF;
+  --p1-mid: #6C8F7E;
+  --p2: #6C8F7E;
+  --p2-light: #D9EAE4;
+  --p2-mid: #4A7A6A;
+  --p3: #B07040;
+  --p3-light: #FAEBD6;
+  --p3-mid: #F2B880;
+  --p4: #2A5C52;
+  --p4-light: #D4E2DF;
+  --p4-mid: #6C8F7E;
+  --p5: #C4813A;
+  --p5-light: #FAEBD6;
+  --p5-mid: #F2B880;
+  --no-bg: #FAF0E8;
+  --no-text: #8B4513;
+  --yes-bg: #EAF2EF;
+  --yes-text: #1E3A34;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-size: 15px; 
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* LAYOUT */
+.shell { display: flex; min-height: 100vh; }
+
+/* SIDEBAR */
+.sidebar {
+  width: 280px;
+  min-width: 280px;
+  background: #1E3A34;
+  border-right: none;
+  padding: 2rem 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-brand {
+  padding: 1.25rem 1.75rem 1.75rem;
+  border-bottom: 1px solid rgba(250,249,246,0.1);
+  margin-bottom: 1.5rem;
+}
+
+.brand-name {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: #FAF9F6;
+  margin-bottom: 5px;
+}
+
+.brand-sub {
+  font-size: 10px;
+  color: rgba(250,249,246,0.5);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+
+.sidebar-section-label {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(250,249,246,0.4);
+  padding: 0 1.75rem;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.sidebar-nav { list-style: none; margin-bottom: 1.5rem; }
+
+.sidebar-nav li a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 1.75rem;
+  text-decoration: none;
+  color: rgba(250,249,246,0.65);
+  font-size: 13px;
+  font-weight: 400;
+  transition: all 0.15s;
+  border-left: 2px solid transparent;
+  cursor: pointer;
+}
+
+.sidebar-nav li a:hover {
+  color: #FAF9F6;
+  background: rgba(250,249,246,0.07);
+}
+
+.sidebar-nav li a.active {
+  color: #FAF9F6;
+  font-weight: 500;
+  background: rgba(250,249,246,0.1);
+  border-left-color: #6C8F7E;
+}
+
+.sidebar-nav li a.active {
+  color: #FAF9F6;
+  font-weight: 500;
+  background: rgba(250,249,246,0.1);
+  border-left-color: #6C8F7E;
+}
+
+.p-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* MAIN */
+.main {
+  flex: 1;
+  overflow-y: auto;
+  border-left: none;
+}
+
+/* SECTIONS */
+.section { display: none; }
+.section.active { display: block; }
+
+/* PAGE HEADER */
+.page-header {
+  padding: 3.5rem 4rem 2.5rem;
+  border-bottom: 1px solid rgba(30,58,52,0.1);
+  max-width: 900px;
+}
+
+.page-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 10px;
+}
+
+.page-title {  font-weight: 600;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 42px;
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.page-desc {
+  font-size: 15px; 
+  color: var(--text-secondary);
+  max-width: 600px;
+  line-height: 1.7;
+}
+
+/* PERSONA HEADER */
+.persona-header {
+  padding: 2.5rem 4rem 2rem;
+  border-bottom: 1px solid rgba(30,58,52,0.1);
+}
+
+.persona-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.persona-name {  font-weight: 600;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 38px;
+  font-weight: 400;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.persona-voice {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  font-style: italic;
+  color: #2E5048;
+  max-width: 640px;
+  line-height: 1.6;
+}
+
+/* TABS */
+.tab-nav {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid rgba(30,58,52,0.1);
+  padding: 0 4rem;
+  background: var(--bg);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  overflow-x: auto;
+}
+
+.tab-btn {
+  padding: 14px 18px;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-tertiary);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.tab-btn:hover { color: var(--text-secondary); }
+.tab-btn.on { color: var(--text-primary); font-weight: 500; }
+
+/* TAB PANELS */
+.tab-panel { display: none; padding: 2.5rem 4rem; max-width: 960px; }
+.tab-panel.on { display: block; }
+
+/* CONTENT COMPONENTS */
+.section-title {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.content-block { margin-bottom: 3rem; }
+.content-block:last-child { margin-bottom: 0; }
+
+/* INSIGHT GRID */
+.insight-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.insight-card { background: #FAF9F6; border: 1px solid rgba(30,58,52,0.12); border-radius: 12px; padding: 1.5rem; }
+  background: #E9E4D8;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem;
+}
+
+.insight-label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #6C8F7E; margin-bottom: 10px; display: block; }
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 8px;
+}
+
+.insight-text { font-size: 14px; color: #2E5048; line-height: 1.75; }
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* QUOTE CARDS */
+.quote-card { background: #FAF9F6; border-left: 3px solid #6C8F7E; border-radius: 0 10px 10px 0; padding: 1.25rem 1.5rem 1.25rem 2rem; margin-bottom: 14px; }
+  background: #E9E4D8;
+  border-left: 3px solid #F2B880;
+  border-radius: 0 8px 8px 0;
+  padding: 1.1rem 1.25rem;
+  margin-bottom: 10px;
+}
+
+.quote-text { font-size: 17px; font-weight: 300; font-style: italic; color: #1E3A34; line-height: 1.6; }
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 18px;
+  font-style: italic;
+  color: var(--text-primary);
+  line-height: 1.55;
+}
+
+/* EMOTION MAP */
+.emotion-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.emotion-card {
+  border: 1px solid rgba(30,58,52,0.12);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.emotion-card.before { background: #FAF9F6; }
+.emotion-card.after { background: #EAF2EE; }
+
+.emotion-label { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.emotion-card.before .emotion-label { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; } color: var(--text-tertiary); }
+.emotion-card.after .emotion-label { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; } color: var(--yes-text); }
+
+.emotion-text { font-size: 14px; line-height: 1.65; color: #1E3A34; }
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+/* TRUST TIMELINE */
+.trust-timeline { display: flex; flex-direction: column; gap: 0; }
+
+.trust-phase {
+  display: flex;
+  gap: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(30,58,52,0.08);
+  align-items: flex-start;
+}
+
+.trust-phase:last-child { border-bottom: none; }
+
+.trust-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 72px;
+}
+
+.trust-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.trust-time {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.trust-body { flex: 1; }
+.trust-title { font-size: 13px; font-weight: 600; color: #1E3A34; margin-bottom: 5px; }
+.trust-desc { font-size: 13px; color: #2E5048; line-height: 1.75; }
+
+/* MESSAGING CARDS */
+.msg-card {
+  border: 1px solid rgba(30,58,52,0.12);
+  border-radius: 12px;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 16px;
+  background: #FAF9F6;
+}
+
+.msg-type {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.msg-text { font-weight: 300;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 19px;
+  color: var(--text-primary);
+  line-height: 1.55;
+  margin-bottom: 8px;
+}
+
+.msg-note {
+  font-size: 12px;
+  color: #6C8F7E;
+  line-height: 1.6;
+  padding-top: 10px;
+  border-top: 1px solid rgba(30,58,52,0.08);
+}
+
+/* CHANNEL GRID */
+.channel-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.channel-card { border: 1px solid rgba(30,58,52,0.12); border-radius: 12px; padding: 1.5rem; background: #FAF9F6; }
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.1rem 1.25rem;
+  background: #E9E4D8;
+}
+
+.channel-name { font-size: 11px; font-weight: 600; color: #1E3A34; margin-bottom: 8px; letter-spacing: 0.06em; text-transform: uppercase; }
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+  letter-spacing: 0.04em;
+}
+
+.channel-text { font-size: 13px; color: #2E5048; line-height: 1.75; }
+  font-size: 13px;
+  color: #1E3A34;
+  line-height: 1.6;
+}
+
+/* TONE PILLS */
+.tone-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.75rem; }
+.tone-pill {
+  font-size: 12px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(30,58,52,0.2);
+  color: #1E3A34;
+  background: #EAF2EE;
+}
+
+/* VOICE NOTES */
+.voice-notes { background: #FAF9F6; border-radius: 12px; overflow: hidden; border: 1px solid rgba(30,58,52,0.12); }
+.voice-note {
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(30,58,52,0.08);
+  font-size: 13px;
+  color: #2E5048;
+  line-height: 1.75;
+}
+.voice-note:last-child { border-bottom: none; }
+.voice-note strong { color: var(--text-primary); font-weight: 500; }
+
+/* SAY / NEVER */
+.say-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.say-card { border-radius: 12px; padding: 1.5rem; }
+.say-card.no { background: #FDF6F0; border: 1px solid rgba(180,100,20,0.15); }
+.say-card.yes { background: #EAF2EE; border: 1px solid rgba(30,58,52,0.15); }
+
+.say-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.say-card.no .say-label { color: #B46414; }
+.say-card.yes .say-label { color: #1E3A34; }
+
+.say-item {
+  font-size: 13px;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  line-height: 1.6;
+}
+.say-card.no .say-item { color: #8B4513; }
+.say-card.yes .say-item { color: #2E5048; }
+.say-item:last-child { border-bottom: none; }
+
+/* OVERVIEW CARDS */
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+  padding: 2.5rem 4rem 4rem;
+}
+
+.overview-card {
+  border: 1px solid rgba(30,58,52,0.12);
+  border-radius: 14px;
+  padding: 1.75rem;
+  background: #FAF9F6;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+
+.overview-card:hover {
+  background: #EAF2EE;
+  transform: translateY(-2px);
+  border-color: rgba(30,58,52,0.25);
+}
+
+.ov-num {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6C8F7E;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.ov-name { 
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.ov-age {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  margin-bottom: 10px;
+}
+
+.ov-core {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-style: italic;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px; 
+}
+
+.ov-accent {
+  width: 32px;
+  height: 3px;
+  border-radius: 2px;
+  margin-bottom: 14px;
+}
+
+/* PRINCIPLE BOX */
+.principle-box { background: #FAF9F6; border: 1px solid rgba(30,58,52,0.12); border-radius: 12px; padding: 1.5rem 1.75rem; margin-bottom: 16px; }
+  background: #E9E4D8;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 10px;
+}
+
+.principle-text { font-size: 14px; color: #2E5048; line-height: 1.8; }
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* HOME INTRO */
+.home-intro {
+  padding: 2.5rem 4rem 0;
+  max-width: 720px;
+}
+
+.home-quote {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 22px;
+  font-weight: 300;
+  font-style: italic;
+  color: #2E5048;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  padding: 0.5rem 0 0.5rem 2rem;
+  border-left: 3px solid #F2B880;
+}
+
+.home-body {
+  font-size: 15px;
+  color: #2E5048;
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+}
+
+.home-label {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6C8F7E;
+  margin-bottom: 8px;
+  margin-top: 2.5rem;
+  font-weight: 600;
+}
+
+.divider { height: 1px; background: var(--border); margin: 2rem 0; }
+
+/* RESPONSIVE */
+@media (max-width: 760px) {
+  .sidebar {
+  width: 280px;
+  min-width: 280px;
+  background: #1E3A34;
+  border-right: none;
+  padding: 2rem 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+  .insight-grid, .emotion-grid, .channel-grid, .say-grid { grid-template-columns: 1fr; }
+  .page-header, .persona-header, .tab-panel, .home-intro {
+  padding: 2.5rem 4rem 0;
+  max-width: 720px;
+}
+  .tab-nav {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid rgba(30,58,52,0.1);
+  padding: 0 4rem;
+  background: var(--bg);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  overflow-x: auto;
+}
+  .overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+  padding: 2.5rem 4rem 4rem;
+}
+  .page-title {  font-weight: 600; font-size: 32px; }
+}
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div class="sidebar-brand">
+    <div class="brand-name">dreamsedge</div>
+    <div class="brand-sub">Persona + Messaging Guide</div>
+  </div>
+
+  <div class="sidebar-section-label">Overview</div>
+  <ul class="sidebar-nav">
+    <li><a onclick="showSection('home')" id="nav-home" class="active">
+      <span class="p-dot" style="background:#C4C2BC"></span> Introduction
+    </a></li>
+  </ul>
+
+  <div class="sidebar-section-label">The Five Personas</div>
+  <ul class="sidebar-nav">
+    <li><a onclick="showSection('p1')" id="nav-p1">
+      <span class="p-dot" style="background:var(--p1)"></span> 01 Purpose-Seeking Professional
+    </a></li>
+    <li><a onclick="showSection('p2')" id="nav-p2">
+      <span class="p-dot" style="background:var(--p2)"></span> 02 Values-Based Coworking
+    </a></li>
+    <li><a onclick="showSection('p3')" id="nav-p3">
+      <span class="p-dot" style="background:var(--p3)"></span> 03 Expansion-Driven Digital Nomad
+    </a></li>
+    <li><a onclick="showSection('p4')" id="nav-p4">
+      <span class="p-dot" style="background:var(--p4)"></span> 04 Creative Reawakening
+    </a></li>
+    <li><a onclick="showSection('p5')" id="nav-p5">
+      <span class="p-dot" style="background:var(--p5)"></span> 05 Continuing Education
+    </a></li>
+  </ul>
+
+  <div class="sidebar-section-label" style="margin-top:1rem">Tools</div>
+  <ul class="sidebar-nav">
+    <li><a onclick="showSection('onboarding')" id="nav-onboarding">
+      <span class="p-dot" style="background:#6C8F7E"></span> Onboarding Flow
+    </a></li>
+    <li><a onclick="showSection('promptguide')" id="nav-promptguide">
+      <span class="p-dot" style="background:#F2B880"></span> Prompt Guide
+    </a></li>
+  </ul>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main class="main">
+
+<!-- HOME -->
+<div class="section active" id="section-home">
+  <div class="page-header">
+    <div class="page-eyebrow">dreamsedge   Internal Team Reference</div>
+    <div class="page-title">Persona & Messaging Framework</div>
+    <div class="page-desc">Five fully researched personas. Each one includes generational insight, micro-moments, emotional mapping, a trust timeline, and a complete locked messaging framework. Use this to write copy, shape product decisions, and keep every word pointing forward.</div>
+  </div>
+
+  <div class="home-intro">
+    <div class="home-label">The guiding principle</div>
+    <div class="home-quote">"Wherever you are is already the right place to start. Every word we write pulls people one step further forward."</div>
+
+    <div class="home-body">dreamsedge speaks to people who have real dreams and real lives   and who need a space that takes both seriously. These personas were built not as marketing targets but as human beings we want to serve well. The research behind each one is the foundation. The messaging is the expression of that research.</div>
+
+    <div class="home-body">Every piece of copy produced for dreamsedge   every headline, email subject line, in-app prompt, and CTA   should pass one test: does it pull this person forward without importing fear, shame, urgency, or the suggestion that something is wrong with them? If it doesn't pass that test, rewrite it.</div>
+
+    <div class="divider"></div>
+    <div class="home-label">The brand voice in three words</div>
+    <div class="home-body">Calm fire. Grounded conviction. Warm precision. Never performative. Never rushed. Never loud.</div>
+
+    <div class="home-label">How to use this document</div>
+    <div class="home-body">Select a persona from the sidebar. Each persona has four layers: Research (who they are, generational context, micro-moments, emotional map, trust timeline), then Messaging (core messages, channel guidance, tone + voice, and the locked say/never say reference). The research layer is not background   it is the reason every message is written the way it is. Read it before writing anything.</div>
+  </div>
+
+  <div class="overview-grid">
+    <div class="overview-card" onclick="showSection('p1')">
+      <div class="ov-accent" style="background:var(--p1)"></div>
+      <div class="ov-num">Persona 01   Primary</div>
+      <div class="ov-name">Purpose-Seeking Professional</div>
+      <div class="ov-age">Late 20s to early 40s</div>
+      <div class="ov-core">"I don't want to blow up my life. I just want it to feel more like mine."</div>
+    </div>
+    <div class="overview-card" onclick="showSection('p2')">
+      <div class="ov-accent" style="background:var(--p2)"></div>
+      <div class="ov-num">Persona 02</div>
+      <div class="ov-name">Values-Based Coworking</div>
+      <div class="ov-age">Late 20s to early 40s</div>
+      <div class="ov-core">"I just want to feel like I'm in the right room with the right people."</div>
+    </div>
+    <div class="overview-card" onclick="showSection('p3')">
+      <div class="ov-accent" style="background:var(--p3)"></div>
+      <div class="ov-num">Persona 03</div>
+      <div class="ov-name">Expansion-Driven Digital Nomad</div>
+      <div class="ov-age">Late 20s to late 30s</div>
+      <div class="ov-core">"I love the freedom. I just want it to feel more grounded."</div>
+    </div>
+    <div class="overview-card" onclick="showSection('p4')">
+      <div class="ov-accent" style="background:var(--p4)"></div>
+      <div class="ov-num">Persona 04</div>
+      <div class="ov-name">Creative Reawakening</div>
+      <div class="ov-age">Any life stage</div>
+      <div class="ov-core">"I don't want to be great at this. I just want to feel like I'm doing it again."</div>
+    </div>
+    <div class="overview-card" onclick="showSection('p5')">
+      <div class="ov-accent" style="background:var(--p5)"></div>
+      <div class="ov-num">Persona 05</div>
+      <div class="ov-name">Continuing Education</div>
+      <div class="ov-age">Late 20s to 50s</div>
+      <div class="ov-core">"I'm learning a lot. I just want it to actually matter in my life."</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- PERSONA 1: PURPOSE-SEEKING PROFESSIONAL -->
+<div class="section" id="section-p1">
+  <div class="persona-header">
+    <div class="persona-eyebrow" style="color:var(--p1)">Persona 01</div>
+    <div class="persona-name">Purpose-Seeking Professional</div>
+    <div class="persona-voice">"I don't want to blow up my life. I just want it to feel more like mine."</div>
+  </div>
+  <div class="tab-nav" id="tabs-p1">
+    <button class="tab-btn on" onclick="showTab('p1',0)" style="border-bottom-color:var(--p1)">Who they are</button>
+    <button class="tab-btn" onclick="showTab('p1',1)">Core tension</button>
+    <button class="tab-btn" onclick="showTab('p1',2)">Behaviors</button>
+    <button class="tab-btn" onclick="showTab('p1',3)">Emotional map</button>
+    <button class="tab-btn" onclick="showTab('p1',4)">Trust timeline</button>
+    <button class="tab-btn" onclick="showTab('p1',5)">dreamsedge opportunity</button>
+    <button class="tab-btn" onclick="showTab('p1',6)">Core messages</button>
+    <button class="tab-btn" onclick="showTab('p1',7)">By channel</button>
+    <button class="tab-btn" onclick="showTab('p1',8)">Tone + voice</button>
+    <button class="tab-btn" onclick="showTab('p1',9)">Say / never say</button>
+  </div>
+  <div class="tab-panel on" id="p1-t0">
+    <div class="content-block">
+      <div class="section-title">Profile</div>
+      <div class="principle-box"><div class="principle-text">Late 20s to early 40s. Works in consulting, tech, strategy, marketing, or mission-driven organizations. Competent, respected, often on an upward trajectory. They have stable income, an urban lifestyle, and access to opportunity. They are not in crisis and not trying to escape. They are asking a quieter, more persistent question: is this really how I want to live?</div></div>
+    </div>
+    <div class="content-block">
+      <div class="section-title">Psychological profile</div>
+      <div class="insight-grid">
+        <div class="insight-card"><div class="insight-label">Growth orientation</div><div class="insight-text">Expansion-driven. Optimizing for aliveness, meaning, and alignment between inner and outer life — not status, income, or efficiency.</div></div>
+        <div class="insight-card"><div class="insight-label">Aliveness hunger</div><div class="insight-text">Strong and motivating. They feel something is under-expressed. The awareness creates readiness without urgency.</div></div>
+        <div class="insight-card"><div class="insight-label">Reflective depth</div><div class="insight-text">Active inner listening. They know something feels off. They just haven't had the right container to explore it.</div></div>
+        <div class="insight-card"><div class="insight-label">Relational openness</div><div class="insight-text">Comfortably relational. They open up when trust is established, pacing is respected, and the environment feels non-performative.</div></div>
+      </div>
+    </div>
+    <div class="content-block">
+      <div class="section-title">Language signals</div>
+      <div class="quote-card" style="border-left-color:var(--p1-mid)"><div class="quote-text">"I feel like there's more in me."</div></div>
+      <div class="quote-card" style="border-left-color:var(--p1-mid)"><div class="quote-text">"I don't want to just be successful. I want it to mean something."</div></div>
+      <div class="quote-card" style="border-left-color:var(--p1-mid)"><div class="quote-text">"I'm trying to figure out what I actually want."</div></div>
+      <div class="quote-card" style="border-left-color:var(--p1-mid)"><div class="quote-text">"I don't want to wake up in 10 years and realize I stayed small."</div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p1-t1">
+    <div class="content-block">
+      <div class="section-title">The core tension</div>
+      <div class="principle-box"><div class="principle-text">At the center of this persona is a subtle but persistent conflict. Externally they are doing well. Internally, something feels under-expressed. They are navigating tensions between stability and exploration, success and meaning, and expectation versus authenticity. Importantly they are not overwhelmed. They are aware. This awareness creates a readiness for change without urgency or panic.</div></div>
+    </div>
+    <div class="emotion-grid">
+      <div class="emotion-card before">
+        <div class="emotion-label">External reality</div>
+        <div class="emotion-text">"I have a good job." "I'm doing well on paper." "I have everything I'm supposed to want."</div>
+      </div>
+      <div class="emotion-card before">
+        <div class="emotion-label">Internal experience</div>
+        <div class="emotion-text">"Something feels off." "I'm not fully expressed." "I don't feel as alive as I could."</div>
+      </div>
+    </div>
+    <div class="content-block" style="margin-top:1.5rem">
+      <div class="section-title">What they are not</div>
+      <div class="principle-box"><div class="principle-text">They are not burned out, desperate, or trying to quit everything. They are not seeking reinvention. They are seeking alignment. This distinction matters enormously for how dreamsedge speaks to them. Any language that implies crisis, escape, or dramatic transformation will miss them entirely.</div></div>
+    </div>
+    <div class="content-block">
+      <div class="section-title">What they are moving toward</div>
+      <div class="insight-grid">
+        <div class="insight-card"><div class="insight-label">Alignment</div><div class="insight-text">Work and life that reflect who they are. A life that feels internally coherent, not just externally successful.</div></div>
+        <div class="insight-card"><div class="insight-label">Expression</div><div class="insight-text">Bringing more of themselves into their work, relationships, and creative output. Not shrinking to fit.</div></div>
+        <div class="insight-card"><div class="insight-label">Expansion</div><div class="insight-text">Not radical change. More space for what matters. Building something that feels theirs.</div></div>
+        <div class="insight-card"><div class="insight-label">What better looks like</div><div class="insight-text">"I feel like myself in my work." "I'm not shrinking to fit." "I'm building something that matters to me."</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p1-t2">
+    <div class="content-block">
+      <div class="section-title">Where they spend time</div>
+      <div class="channel-grid">
+        <div class="channel-card"><div class="channel-name">LinkedIn</div><div class="channel-text">Passive presence. They consume thoughtfully but don't broadcast. Identity signaling without depth.</div></div>
+        <div class="channel-card"><div class="channel-name">Substack</div><div class="channel-text">Active readers. This is where they go for reflection. They stay subscribed to voices that give them language for what they feel.</div></div>
+        <div class="channel-card"><div class="channel-name">Podcasts</div><div class="channel-text">Purpose, career design, and meaning. They listen on commutes and runs. Long-form resonance.</div></div>
+        <div class="channel-card"><div class="channel-name">Small communities</div><div class="channel-text">Alumni networks, Slack or Discord groups, occasional workshops. They prefer depth over volume.</div></div>
+      </div>
+    </div>
+    <div class="content-block">
+      <div class="section-title">What they try</div>
+      <div class="principle-box"><div class="principle-text">Courses on life design and career transitions. Selective coaching. Writing and journaling. They invest in growth — Substack subscriptions, courses from $100 to $1,000+, occasional retreats. What triggers purchase: "This feels like me" and credibility plus tone alignment.</div></div>
+    </div>
+    <div class="content-block">
+      <div class="section-title">What they avoid</div>
+      <div class="principle-box"><div class="principle-text">Overly tactical productivity systems. Hype-driven self-improvement. Anything that feels performative, extractive, or insincere. Aggressive marketing. Overpromising transformation. These are instant trust-killers with this persona.</div></div>
+    </div>
+    <div class="content-block">
+      <div class="section-title">Competitive landscape from their POV</div>
+      <div class="insight-grid">
+        <div class="insight-card"><div class="insight-label">LinkedIn</div><div class="insight-text">Reinforces identity but lacks depth. Good for signaling, not for exploration.</div></div>
+        <div class="insight-card"><div class="insight-label">Substack / podcasts</div><div class="insight-text">Offer reflection but no interaction. One-directional. They consume but can't participate.</div></div>
+        <div class="insight-card"><div class="insight-label">Courses and programs</div><div class="insight-text">Provide structure but feel transactional. Learning without integration.</div></div>
+        <div class="insight-card"><div class="insight-label">Coaching</div><div class="insight-text">High-touch but expensive and inconsistent. Hard to find someone who genuinely gets it.</div></div>
+      </div>
+      <div class="principle-box" style="margin-top:1rem"><div class="principle-text">The gap: these solutions separate reflection, community, and action. As a result they rely on workarounds — journaling alone, informal conversations, jumping between programs — none offering sustained, relational, identity-aligned growth.</div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p1-t3">
+    <div class="content-block">
+      <div class="section-title">Before dreamsedge</div>
+      <div class="emotion-grid">
+        <div class="emotion-card before"><div class="emotion-label">Dominant feeling</div><div class="emotion-text">Aware but without a container. Something feels under-expressed and they know it. They are carrying a persistent question they haven't been able to answer alone.</div></div>
+        <div class="emotion-card before"><div class="emotion-label">Relational state</div><div class="emotion-text">Waiting for the right room. They are not overly expressive but not private. They open up when trust is established, pacing is respected, and vulnerability is normalized.</div></div>
+      </div>
+    </div>
+    <div class="content-block">
+      <div class="section-title">After dreamsedge</div>
+      <div class="emotion-grid">
+        <div class="emotion-card after"><div class="emotion-label">The shift</div><div class="emotion-text">Alignment and language. They can finally articulate what they've been feeling. The exploration has a container that moves at their pace without pressure or performance.</div></div>
+        <div class="emotion-card after"><div class="emotion-label">What they tell people</div><div class="emotion-text">"You'd really like this." "This made me think differently." "This feels aligned with where I'm at." They share selectively but meaningfully — not broadcast, but high-trust referrals.</div></div>
+      </div>
+    </div>
+    <div class="content-block">
+      <div class="section-title">Evangelism potential</div>
+      <div class="principle-box"><div class="principle-text">High but nuanced. They don't broadcast widely. They share when something articulates what they've been feeling, gives them language, or creates real connection. Their referrals carry enormous weight because they are rare and genuine.</div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p1-t4">
+    <div class="trust-timeline">
+      <div class="trust-phase"><div class="trust-marker"><div class="trust-dot" style="background:var(--p1)"></div><div class="trust-time">Weeks 1–2</div></div><div class="trust-body"><div class="trust-title">Observing</div><div class="trust-desc">Reads everything. Checks credibility and tone alignment. If it feels performative or like another self-help funnel, they're gone. The absence of hype is itself a trust signal.</div></div></div>
+      <div class="trust-phase"><div class="trust-marker"><div class="trust-dot" style="background:var(--p1-mid)"></div><div class="trust-time">Weeks 3–4</div></div><div class="trust-body"><div class="trust-title">One quiet action</div><div class="trust-desc">A newsletter sign-up, a saved piece of content, one exercise completed privately. They test the water before committing any more of themselves.</div></div></div>
+      <div class="trust-phase"><div class="trust-marker"><div class="trust-dot" style="background:var(--p1-light)"></div><div class="trust-time">Month 2</div></div><div class="trust-body"><div class="trust-title">Opening up</div><div class="trust-desc">If they feel unhurried and unjudged, they go deeper. The intellectual door opens first. The emotional door follows. They need both before they commit.</div></div></div>
+      <div class="trust-phase"><div class="trust-marker"><div class="trust-dot" style="background:#CECBF6"></div><div class="trust-time">Month 3+</div></div><div class="trust-body"><div class="trust-title">Committed and vocal</div><div class="trust-desc">When they commit, they commit fully. They become selective but powerful evangelists — telling the right two or three people who then come looking.</div></div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p1-t5">
+    <div class="content-block">
+      <div class="section-title">The dreamsedge fit</div>
+      <div class="principle-box"><div class="principle-text">dreamsedge fits as a place to explore, express, and evolve together. It offers structure without rigidity, community without performance, and growth without pressure. It replaces fragmented exploration, solo reflection, and shallow communities with something sustained, relational, and identity-aligned.</div></div>
+    </div>
+    <div class="insight-grid">
+      <div class="insight-card"><div class="insight-label">Why it resonates</div><div class="insight-text">It is the container they've been looking for. It allows exploration without pressure and connection without performance. It doesn't tell them who to become — it helps them come fully into who they already are.</div></div>
+      <div class="insight-card"><div class="insight-label">What it replaces</div><div class="insight-text">Fragmented courses, solo journaling, shallow communities, and expensive coaching. dreamsedge integrates reflection, community, and action in one place.</div></div>
+      <div class="insight-card"><div class="insight-label">Buying trigger</div><div class="insight-text">"This feels like me." Credibility plus tone alignment. Clear but non-rigid structure. The moment they feel seen without being managed, they're in.</div></div>
+      <div class="insight-card"><div class="insight-label">Trust killer</div><div class="insight-text">Overpromising transformation. Aggressive marketing. Lack of depth. Any of these will end the relationship before it begins.</div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p1-t6">
+    <div class="content-block">
+      <div class="section-title">Awareness</div>
+      <div class="msg-card"><div class="msg-type" style="color:var(--p1)">Hero</div><div class="msg-text">"You've built a life that works. Now build one that feels like yours."</div><div class="msg-note">Opens with acknowledgment then moves forward. No guilt, no crisis framing.</div></div>
+      <div class="msg-card"><div class="msg-type" style="color:var(--p1)">Variant</div><div class="msg-text">"There's more in you. Not in output. In how you experience your life."</div></div>
+    </div>
+    <div class="content-block">
+      <div class="section-title">Value proposition</div>
+      <div class="msg-card"><div class="msg-type" style="color:var(--p1)">Core</div><div class="msg-text">"dreamsedge is a place to explore, express, and evolve — together. Structure without rigidity. Community without performance. Growth without pressure."</div><div class="msg-note">Directly addresses the fragmented landscape they've already tried.</div></div>
+    </div>
+    <div class="content-block">
+      <div class="section-title">Trust builder</div>
+      <div class="msg-card"><div class="msg-type" style="color:var(--p1)">Email / content</div><div class="msg-text">"Most people with dreams they haven't pursued yet simply haven't had the right space, the right moment, or the right support to begin. That's what we're here for."</div></div>
+    </div>
+    <div class="content-block">
+      <div class="section-title">CTA</div>
+      <div class="msg-card"><div class="msg-type" style="color:var(--p1)">Conversion</div><div class="msg-text">"Make space for what matters. Begin here."</div><div class="msg-note">From the research: "Make space for what matters" is language that works for this persona.</div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p1-t7">
+    <div class="channel-grid">
+      <div class="channel-card"><div class="channel-name">LinkedIn</div><div class="channel-text">Quiet essays that name the gap between external success and internal alignment. Forward-looking. Ends with invitation, never pitch.</div></div>
+      <div class="channel-card"><div class="channel-name">Substack / email</div><div class="channel-text">The highest-value channel. Feels like correspondence. Subject lines like "There's more in you — not in output, in how you live." One idea per send.</div></div>
+      <div class="channel-card"><div class="channel-name">Podcasts</div><div class="channel-text">Conversations about alignment, purpose, and what comes after conventional success. Don's voice and depth are the asset here.</div></div>
+      <div class="channel-card"><div class="channel-name">In-app</div><div class="channel-text">Framework-first but warm. Clear structure that respects their intelligence. Space for reflection without pressure to perform.</div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p1-t8">
+    <div class="section-title">Tone calibration</div>
+    <div class="tone-row"><span class="tone-pill">Expansion-driven not fear-driven</span><span class="tone-pill">Warm but grounded</span><span class="tone-pill">Structure with space</span><span class="tone-pill">Non-performative</span><span class="tone-pill">Unhurried</span></div>
+    <div class="section-title">Voice notes</div>
+    <div class="voice-notes">
+      <div class="voice-note"><strong>Pacing:</strong> Spacious. Let ideas land. This persona reads carefully and will notice when something feels rushed or formulaic.</div>
+      <div class="voice-note"><strong>Vocabulary:</strong> "Alignment" not "purpose." "Make space" not "find balance." "There's more in you" not "unlock your potential." Small distinctions carry large weight.</div>
+      <div class="voice-note"><strong>Structure:</strong> Acknowledge their reality without dramatizing it. Open the door. Invite. Never push.</div>
+      <div class="voice-note"><strong>What to avoid:</strong> Any language implying crisis, escape, or dramatic transformation. Also: productivity framing, efficiency language, or anything that sounds like a course catalog.</div>
+      <div class="voice-note"><strong>5. Does it sound like dreamsedge?</strong> Read it out loud. If it sounds like any other self-help platform or like a marketer wrote it, rewrite it. dreamsedge has one voice: calm, warm, unhurried, and completely sincere. That voice belongs to the brand, not to any individual.</div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p1-t9">
+    <div class="say-grid">
+      <div class="say-card no"><div class="say-label">Never say</div><div class="say-item">"Optimize your life"</div><div class="say-item">"10x your career"</div><div class="say-item">"Find your purpose fast"</div><div class="say-item">"Don't let fear hold you back"</div><div class="say-item">"It's time to finally..."</div><div class="say-item">Anything implying crisis or escape</div></div>
+      <div class="say-card yes"><div class="say-label">Always say</div><div class="say-item">"Make space for what matters"</div><div class="say-item">"There's more in you"</div><div class="say-item">"You don't have to do this alone"</div><div class="say-item">"Structure without rigidity"</div><div class="say-item">"Community without performance"</div><div class="say-item">"Come fully into your life"</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PERSONA 2: VALUES-BASED COWORKING -->
+<div class="section" id="section-p2">
+  <div class="persona-header">
+    <div class="persona-eyebrow" style="color:var(--p2)">Persona 02</div>
+    <div class="persona-name">Values-Based Coworking</div>
+    <div class="persona-voice">"I just want to feel like I'm in the right room with the right people."</div>
+  </div>
+  <div class="tab-nav" id="tabs-p2">
+    <button class="tab-btn on" onclick="showTab('p2',0)" style="border-bottom-color:var(--p2)">Who they are</button>
+    <button class="tab-btn" onclick="showTab('p2',1)">Core tension</button>
+    <button class="tab-btn" onclick="showTab('p2',2)">Behaviors</button>
+    <button class="tab-btn" onclick="showTab('p2',3)">Emotional map</button>
+    <button class="tab-btn" onclick="showTab('p2',4)">Trust timeline</button>
+    <button class="tab-btn" onclick="showTab('p2',5)">dreamsedge opportunity</button>
+    <button class="tab-btn" onclick="showTab('p2',6)">Core messages</button>
+    <button class="tab-btn" onclick="showTab('p2',7)">By channel</button>
+    <button class="tab-btn" onclick="showTab('p2',8)">Tone + voice</button>
+    <button class="tab-btn" onclick="showTab('p2',9)">Say / never say</button>
+  </div>
+  <div class="tab-panel on" id="p2-t0">
+    <div class="content-block">
+      <div class="section-title">Profile</div>
+      <div class="principle-box"><div class="principle-text">Late 20s to early 40s. Freelancers, founders, consultants, and independent professionals who have designed their work for flexibility but are now seeking an environment that feels more socially meaningful, creatively energizing, and aligned with how they want to live. They are not just looking for a place to work. They are looking for a place that reflects who they are becoming.</div></div>
+    </div>
+    <div class="content-block">
+      <div class="section-title">Psychological profile</div>
+      <div class="insight-grid">
+        <div class="insight-card"><div class="insight-label">Growth orientation</div><div class="insight-text">Expansion-driven. Optimizing for connection, shared energy, and aligned environments — not isolation, efficiency alone, or status signaling.</div></div>
+        <div class="insight-card"><div class="insight-label">Aliveness hunger</div><div class="insight-text">Strong. They feel most alive in the right room with the right people. Environment directly affects how they show up.</div></div>
+        <div class="insight-card"><div class="insight-label">Reflective depth</div><div class="insight-text">Emerging to active. They know the space they're in changes them. They just haven't found a space that fully reflects who they are.</div></div>
+        <div class="insight-card"><div class="insight-label">Relational openness</div><div class="insight-text">High. Highly social, comfortable engaging, open to conversation and collaboration when the environment feels right.</div></div>
+      </div>
+    </div>
+    <div class="content-block">
+      <div class="section-title">Language signals</div>
+      <div class="quote-card" style="border-left-color:var(--p2-mid)"><div class="quote-text">"I like being around people who care about what they're doing."</div></div>
+      <div class="quote-card" style="border-left-color:var(--p2-mid)"><div class="quote-text">"I don't want to work alone all day."</div></div>
+      <div class="quote-card" style="border-left-color:var(--p2-mid)"><div class="quote-text">"The space I'm in affects how I feel."</div></div>
+      <div class="quote-card" style="border-left-color:var(--p2-mid)"><div class="quote-text">"I just want to feel like I'm in the right room with the right people."</div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p2-t1">
+    <div class="content-block">
+      <div class="section-title">The core tension</div>
+      <div class="principle-box"><div class="principle-text">They have created independence but still need belonging and shared energy. Externally they have freedom and autonomy. Internally they often feel a lack of connection, inspiration, or meaningful engagement. They are not seeking traditional offices or transactional networking. They are seeking a space that feels right.</div></div>
+    </div>
+    <div class="emotion-grid">
+      <div class="emotion-card before"><div class="emotion-label">External reality</div><div class="emotion-text">"I have flexibility in how I work." "I've designed my own schedule." "I'm not tied to a traditional office."</div></div>
+      <div class="emotion-card before"><div class="emotion-label">Internal experience</div><div class="emotion-text">"I don't always feel connected or inspired." "The spaces I'm in don't reflect who I am." "Something is missing from the environment."</div></div>
+    </div>
+    <div class="content-block" style="margin-top:1.5rem">
+      <div class="section-title">What they are moving toward</div>
+      <div class="insight-grid">
+        <div class="insight-card"><div class="insight-label">Belonging</div><div class="insight-text">Feeling part of something beyond themselves. Being around people who care about what they do.</div></div>
+        <div class="insight-card"><div class="insight-label">Energy</div><div class="insight-text">Environments that increase motivation and engagement. "The space I'm in changes how I show up."</div></div>
+        <div class="insight-card"><div class="insight-label">Alignment</div><div class="insight-text">Working in spaces that reflect their values. Not just any room. The right room.</div></div>
+        <div class="insight-card"><div class="insight-label">What better looks like</div><div class="insight-text">"I feel energized when I'm here." "I actually like the people I'm around." "This feels aligned with how I want to live and work."</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p2-t2">
+    <div class="content-block">
+      <div class="section-title">Where they spend time</div>
+      <div class="channel-grid">
+        <div class="channel-card"><div class="channel-name">Coworking spaces</div><div class="channel-text">Impact House, WeWork, local independents. They cycle through spaces looking for the right cultural fit.</div></div>
+        <div class="channel-card"><div class="channel-name">Membership clubs</div><div class="channel-text">Chief, community-based memberships. They invest in belonging. Already paying for access to environments.</div></div>
+        <div class="channel-card"><div class="channel-name">Local events</div><div class="channel-text">Community programming, casual collaboration, workshops. They show up and participate when the vibe is right.</div></div>
+        <div class="channel-card"><div class="channel-name">Online communities</div><div class="channel-text">Slack and Discord groups aligned with their work. Light-touch digital presence supporting stronger in-person preference.</div></div>
+      </div>
+    </div>
+    <div class="content-block">
+      <div class="section-title">Competitive landscape from their POV</div>
+      <div class="principle-box"><div class="principle-text">Current environments provide proximity and energy but often lack intentional connection, structured growth, and meaningful relational depth. The programming is inconsistent or surface-level. Workarounds include forming small informal groups, attending events, or building ad hoc relationships without structured pathways for deeper connection or shared growth. The gap is not access to people or places. The gap is depth within the environments they already inhabit.</div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p2-t3">
+    <div class="content-block">
+      <div class="section-title">Before dreamsedge</div>
+      <div class="emotion-grid">
+        <div class="emotion-card before"><div class="emotion-label">Dominant feeling</div><div class="emotion-text">Proximate but not connected. They are in rooms with people but not in the right room with the right people. The independence is real but the belonging is missing.</div></div>
+        <div class="emotion-card before"><div class="emotion-label">Relational state</div><div class="emotion-text">Highly social but underserved. They support others easily and engage consistently. They are just waiting for an environment that matches their energy and values.</div></div>
+      </div>
+    </div>
+    <div class="content-block">
+      <div class="section-title">After dreamsedge</div>
+      <div class="emotion-grid">
+        <div class="emotion-card after"><div class="emotion-label">The shift</div><div class="emotion-text">Energized and anchored. "I feel energized when I'm here." "I actually like the people I'm around." Belonging within independence — the exact thing they've been looking for.</div></div>
+        <div class="emotion-card after"><div class="emotion-label">Evangelism</div><div class="emotion-text">High. They naturally invite others into spaces they enjoy. They evangelize when they feel belonging, feel energized, and feel proud of the environment. This persona recruits organically.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p2-t4">
+    <div class="trust-timeline">
+      <div class="trust-phase"><div class="trust-marker"><div class="trust-dot" style="background:var(--p2)"></div><div class="trust-time">First contact</div></div><div class="trust-body"><div class="trust-title">Vibe check</div><div class="trust-desc">Immediate cultural assessment. Does this feel like my kind of people? Does the tone match how I want to move in the world? They know within minutes.</div></div></div>
+      <div class="trust-phase"><div class="trust-marker"><div class="trust-dot" style="background:var(--p2-mid)"></div><div class="trust-time">Week 1–2</div></div><div class="trust-body"><div class="trust-title">One shared experience</div><div class="trust-desc">A gathering, a session, or a community moment that feels genuinely meaningful. They need consistent proximity and low-pressure organic interaction before going deeper.</div></div></div>
+      <div class="trust-phase"><div class="trust-marker"><div class="trust-dot" style="background:var(--p2-light)"></div><div class="trust-time">Month 1</div></div><div class="trust-body"><div class="trust-title">Regular participation</div><div class="trust-desc">If the energy is right and the people feel aligned, they show up consistently. Reciprocity score is high — they support others and engage when the culture rewards depth.</div></div></div>
+      <div class="trust-phase"><div class="trust-marker"><div class="trust-dot" style="background:#9FE1CB"></div><div class="trust-time">Month 2+</div></div><div class="trust-body"><div class="trust-title">Community builder</div><div class="trust-desc">Becomes an active contributor and recruiter. They bring others in. This persona is the growth engine for dreamsedge within physical communities.</div></div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p2-t5">
+    <div class="content-block">
+      <div class="section-title">The dreamsedge fit</div>
+      <div class="principle-box"><div class="principle-text">dreamsedge fits as a layer of depth within existing environments. It offers intentional connection, shared growth, and meaningful interaction. It replaces surface-level engagement, isolated work, and transactional networking with something that feels genuinely alive. This persona has already solved for independence. They are now searching for belonging within that independence.</div></div>
+    </div>
+    <div class="insight-grid">
+      <div class="insight-card"><div class="insight-label">Why it resonates</div><div class="insight-text">dreamsedge is the right room. It provides the culture, the people, and the depth they've been cycling through spaces trying to find.</div></div>
+      <div class="insight-card"><div class="insight-label">Buying trigger</div><div class="insight-text">"This feels like my kind of people." "I'll want to spend time here." "This isn't just a workspace." Culture fit before features.</div></div>
+      <div class="insight-card"><div class="insight-label">IRL opportunity</div><div class="insight-text">This persona is already physically clustered and already investing in community environments. dreamsedge can enter through existing spaces they inhabit.</div></div>
+      <div class="insight-card"><div class="insight-label">Trust killer</div><div class="insight-text">Generic environments, lack of culture, surface-level networking. They can read an inauthentic space instantly.</div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p2-t6">
+    <div class="content-block">
+      <div class="section-title">Awareness</div>
+      <div class="msg-card"><div class="msg-type" style="color:var(--p2)">Hero</div><div class="msg-text">"Dream alongside people who care. The right room changes everything."</div><div class="msg-note">Environment-first language. Speaks directly to how this persona experiences belonging.</div></div>
+      <div class="msg-card"><div class="msg-type" style="color:var(--p2)">Variant</div><div class="msg-text">"You've built independence. Now build belonging within it."</div></div>
+    </div>
+    <div class="content-block">
+      <div class="section-title">Value proposition</div>
+      <div class="msg-card"><div class="msg-type" style="color:var(--p2)">Core</div><div class="msg-text">"dreamsedge is a place where the people around you are as intentional as you are. Shared growth. Real connection. The room you've been looking for."</div></div>
+    </div>
+    <div class="content-block">
+      <div class="section-title">CTA</div>
+      <div class="msg-card"><div class="msg-type" style="color:var(--p2)">Conversion</div><div class="msg-text">"Dream in the right room. Join us."</div><div class="msg-note">From the research: "Dream in the right room" and "Build alongside others" are the language that works.</div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p2-t7">
+    <div class="channel-grid">
+      <div class="channel-card"><div class="channel-name">IRL / events</div><div class="channel-text">The primary channel. This persona responds to physical presence. Events, gatherings, and shared spaces are how they first encounter and evaluate dreamsedge.</div></div>
+      <div class="channel-card"><div class="channel-name">Instagram</div><div class="channel-text">Visual culture signaling. Images of people in real spaces doing real things. Community energy without performance.</div></div>
+      <div class="channel-card"><div class="channel-name">Word of mouth</div><div class="channel-text">The most powerful channel. When this persona finds their room they tell others. Invest in the experience and this persona does the marketing.</div></div>
+      <div class="channel-card"><div class="channel-name">In-app</div><div class="channel-text">Community-forward onboarding. Who else is here, what are they building, how do I connect. People before features.</div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p2-t8">
+    <div class="section-title">Tone calibration</div>
+    <div class="tone-row"><span class="tone-pill">Relational not transactional</span><span class="tone-pill">Warm and direct</span><span class="tone-pill">Community energy</span><span class="tone-pill">Invitational</span><span class="tone-pill">Place-forward</span></div>
+    <div class="section-title">Voice notes</div>
+    <div class="voice-notes">
+      <div class="voice-note"><strong>Pacing:</strong> Energetic but grounded. This persona moves quickly when they feel the vibe. Punchy sentences, forward momentum.</div>
+      <div class="voice-note"><strong>Vocabulary:</strong> "Room" and "people" and "alongside" are the load-bearing words. "Community" works when it's specific. "Network" does not.</div>
+      <div class="voice-note"><strong>Structure:</strong> Lead with the feeling of the room. Then who's in it. Then what happens there. Environment first, always.</div>
+      <div class="voice-note"><strong>What to avoid:</strong> "Network more." "Optimize productivity." "Optimize" anything. Forced networking language. Anything transactional.</div>
+      <div class="voice-note"><strong>Does it sound like dreamsedge?</strong> Read it out loud. If it sounds like any other self-help platform or like a marketer wrote it, rewrite it. dreamsedge has one voice: calm, warm, unhurried, and completely sincere.</div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p2-t9">
+    <div class="say-grid">
+      <div class="say-card no"><div class="say-label">Never say</div><div class="say-item">"Network more"</div><div class="say-item">"Optimize productivity"</div><div class="say-item">"Scale your connections"</div><div class="say-item">"Build your tribe"</div><div class="say-item">Transactional networking language</div><div class="say-item">Anything that makes people the means not the point</div></div>
+      <div class="say-card yes"><div class="say-label">Always say</div><div class="say-item">"Dream alongside people who care"</div><div class="say-item">"Dream in the right room"</div><div class="say-item">"Build alongside others"</div><div class="say-item">"The right room changes everything"</div><div class="say-item">"Belonging within independence"</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PERSONA 3: EXPANSION-DRIVEN DIGITAL NOMAD -->
+<div class="section" id="section-p3">
+  <div class="persona-header">
+    <div class="persona-eyebrow" style="color:var(--p3)">Persona 03</div>
+    <div class="persona-name">Expansion-Driven Digital Nomad</div>
+    <div class="persona-voice">"I love the freedom. I just want it to feel more grounded."</div>
+  </div>
+  <div class="tab-nav" id="tabs-p3">
+    <button class="tab-btn on" onclick="showTab('p3',0)" style="border-bottom-color:var(--p3)">Who they are</button>
+    <button class="tab-btn" onclick="showTab('p3',1)">Core tension</button>
+    <button class="tab-btn" onclick="showTab('p3',2)">Behaviors</button>
+    <button class="tab-btn" onclick="showTab('p3',3)">Emotional map</button>
+    <button class="tab-btn" onclick="showTab('p3',4)">Trust timeline</button>
+    <button class="tab-btn" onclick="showTab('p3',5)">dreamsedge opportunity</button>
+    <button class="tab-btn" onclick="showTab('p3',6)">Core messages</button>
+    <button class="tab-btn" onclick="showTab('p3',7)">By channel</button>
+    <button class="tab-btn" onclick="showTab('p3',8)">Tone + voice</button>
+    <button class="tab-btn" onclick="showTab('p3',9)">Say / never say</button>
+  </div>
+  <div class="tab-panel on" id="p3-t0">
+    <div class="content-block">
+      <div class="section-title">Profile</div>
+      <div class="principle-box"><div class="principle-text">Late 20s to late 30s. Location-independent professionals who have intentionally designed their life around freedom, exploration, and possibility. They are not escaping a fixed life — they have already left it. Now they are asking a deeper question about what that freedom is for. Mobile, curious, and social in bursts — but often missing continuity, integration, and depth.</div></div>
+    </div>
+    <div class="content-block">
+      <div class="section-title">Psychological profile</div>
+      <div class="insight-grid">
+        <div class="insight-card"><div class="insight-label">Growth orientation</div><div class="insight-text">Expansion-driven. Optimizing for freedom, experience, and expansion — not stability, predictability, or long-term structure.</div></div>
+        <div class="insight-card"><div class="insight-label">Aliveness hunger</div><div class="insight-text">Strong to central. Movement and new environments are how they feel alive. They are now starting to ask what makes that feeling last.</div></div>
+        <div class="insight-card"><div class="insight-label">Reflective depth</div><div class="insight-text">Emerging to active. They are beginning to move from experience-collection toward meaning-making. This is the pivot dreamsedge meets.</div></div>
+        <div class="insight-card"><div class="insight-label">Relational openness</div><div class="insight-text">High in context. Highly social in shared physical spaces. Less consistent over time. Strong in the moment, weaker in continuity.</div></div>
+      </div>
+    </div>
+    <div class="content-block">
+      <div class="section-title">Language signals</div>
+      <div class="quote-card" style="border-left-color:var(--p3-mid)"><div class="quote-text">"I can go anywhere — but I want something that stays with me."</div></div>
+      <div class="quote-card" style="border-left-color:var(--p3-mid)"><div class="quote-text">"I love the freedom. I just want it to feel more grounded."</div></div>
+      <div class="quote-card" style="border-left-color:var(--p3-mid)"><div class="quote-text">"I feel connected wherever I go — but not deeply connected anywhere."</div></div>
+      <div class="quote-card" style="border-left-color:var(--p3-mid)"><div class="quote-text">"I'm not just moving. I want to be building something."</div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p3-t1">
+    <div class="content-block">
+      <div class="section-title">The core tension</div>
+      <div class="principle-box"><div class="principle-text">They have created a life of freedom but are still searching for depth and continuity. Externally they have achieved what many aspire to: geographic flexibility, autonomy, and access to new environments. Internally they often experience a lack of grounding and sustained connection. This is not a freedom-seeking persona anymore. This is a meaning-from-freedom persona.</div></div>
+    </div>
+    <div class="emotion-grid">
+      <div class="emotion-card before"><div class="emotion-label">External reality</div><div class="emotion-text">"I can go anywhere." "I have complete freedom." "I've designed my life around possibility."</div></div>
+      <div class="emotion-card before"><div class="emotion-label">Internal experience</div><div class="emotion-text">"I don't always feel grounded." "Connections are episodic, not sustained." "I'm moving but I'm not sure what I'm building."</div></div>
+    </div>
+    <div class="content-block" style="margin-top:1.5rem">
+      <div class="section-title">What they are moving toward</div>
+      <div class="insight-grid">
+        <div class="insight-card"><div class="insight-label">Expansion</div><div class="insight-text">Continued exploration of places, people, and perspectives. They don't want to stop moving. They want the movement to mean something.</div></div>
+        <div class="insight-card"><div class="insight-label">Connection</div><div class="insight-text">Meaningful relationships that extend beyond a single location. Something that travels with them.</div></div>
+        <div class="insight-card"><div class="insight-label">Integration</div><div class="insight-text">A sense that their life is building toward something, not just moving through experiences. Coherence across the motion.</div></div>
+        <div class="insight-card"><div class="insight-label">What better looks like</div><div class="insight-text">"I feel connected wherever I go." "I'm not just moving — I'm building something." "My life feels coherent, not fragmented."</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p3-t2">
+    <div class="content-block">
+      <div class="section-title">Where they spend time</div>
+      <div class="channel-grid">
+        <div class="channel-card"><div class="channel-name">Nomad hubs</div><div class="channel-text">WiFi Tribe, Remote Year, local nomad communities. Already investing in travel-based communities. Social entry points that lack continuity.</div></div>
+        <div class="channel-card"><div class="channel-name">Coworking networks</div><div class="channel-text">WeWork and independent coworking. Functional spaces that provide access but not depth.</div></div>
+        <div class="channel-card"><div class="channel-name">Online communities</div><div class="channel-text">Slack and Discord groups. Loose connections maintained digitally between physical encounters.</div></div>
+        <div class="channel-card"><div class="channel-name">Group experiences</div><div class="channel-text">Retreats, cohorts, shared housing. They are highly responsive to shared containers. These are where dreamsedge can intercept.</div></div>
+      </div>
+    </div>
+    <div class="content-block">
+      <div class="section-title">Competitive landscape from their POV</div>
+      <div class="principle-box"><div class="principle-text">The ecosystem provides access but not continuity. Travel communities offer new environments and social entry points but lack ongoing relational depth, structured personal growth, and continuity across locations. Workarounds: hopping between communities, revisiting familiar hubs, maintaining loose inconsistent relationships. The gap is not access to people or places. The gap is a consistent layer of meaning and connection that travels with them.</div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p3-t3">
+    <div class="content-block">
+      <div class="section-title">Before dreamsedge</div>
+      <div class="emotion-grid">
+        <div class="emotion-card before"><div class="emotion-label">Dominant feeling</div><div class="emotion-text">Expansive but episodic. Each new place and community offers a burst of connection and energy. But nothing carries forward. The depth doesn't accumulate.</div></div>
+        <div class="emotion-card before"><div class="emotion-label">Relational state</div><div class="emotion-text">Strong in the moment, weaker in continuity. They build relationships quickly and let them go easily. They are beginning to want something that holds.</div></div>
+      </div>
+    </div>
+    <div class="content-block">
+      <div class="section-title">After dreamsedge</div>
+      <div class="emotion-grid">
+        <div class="emotion-card after"><div class="emotion-label">The shift</div><div class="emotion-text">Continuity across movement. dreamsedge is the through-line that travels with them. Connection and growth that don't reset with every new city.</div></div>
+        <div class="emotion-card after"><div class="emotion-label">Evangelism</div><div class="emotion-text">Medium to high. They share lifestyle experiences more readily than depth. When dreamsedge feels meaningful and real they evangelize through the communities and spaces they already move through.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p3-t4">
+    <div class="trust-timeline">
+      <div class="trust-phase"><div class="trust-marker"><div class="trust-dot" style="background:var(--p3)"></div><div class="trust-time">First contact</div></div><div class="trust-body"><div class="trust-title">Shared physical space</div><div class="trust-desc">Most likely to encounter dreamsedge through a coworking space, retreat, or nomad community event. In-person entry is more powerful than digital for this persona.</div></div></div>
+      <div class="trust-phase"><div class="trust-marker"><div class="trust-dot" style="background:var(--p3-mid)"></div><div class="trust-time">Week 1–2</div></div><div class="trust-body"><div class="trust-title">Organic interaction</div><div class="trust-desc">They open up when interaction is low-pressure and in shared environments. They need the container to feel social, not structured. No heavy facilitation — just the right room.</div></div></div>
+      <div class="trust-phase"><div class="trust-marker"><div class="trust-dot" style="background:var(--p3-light)"></div><div class="trust-time">Month 1</div></div><div class="trust-body"><div class="trust-title">Portability test</div><div class="trust-desc">Does dreamsedge travel with them? Can they stay connected when they move to the next location? This is the key retention question for this persona.</div></div></div>
+      <div class="trust-phase"><div class="trust-marker"><div class="trust-dot" style="background:#F5C4B3"></div><div class="trust-time">Month 2+</div></div><div class="trust-body"><div class="trust-title">Committed when continuity holds</div><div class="trust-desc">If dreamsedge proves it travels with them and sustains connection across locations they become loyal. They introduce dreamsedge to every new community they enter.</div></div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p3-t5">
+    <div class="content-block">
+      <div class="section-title">The dreamsedge fit</div>
+      <div class="principle-box"><div class="principle-text">dreamsedge fits as a layer of continuity across movement. It provides connection beyond place and depth beyond experience. This persona has already achieved freedom. They are now searching for depth that moves with them. They are not looking for more freedom — they are looking for what to do with it.</div></div>
+    </div>
+    <div class="insight-grid">
+      <div class="insight-card"><div class="insight-label">Why it resonates</div><div class="insight-text">dreamsedge is portable, repeatable, and relational. It provides the consistent layer of meaning and connection that travels with them regardless of location.</div></div>
+      <div class="insight-card"><div class="insight-label">Buying trigger</div><div class="insight-text">"Who will I meet?" "What will I experience?" "Does this travel with me?" Experience and connection before features.</div></div>
+      <div class="insight-card"><div class="insight-label">IRL interception</div><div class="insight-text">Enter through the physical environments they already inhabit — nomad hubs, retreats, coworking spaces. dreamsedge as a layer of depth within spaces they trust.</div></div>
+      <div class="insight-card"><div class="insight-label">Trust killer</div><div class="insight-text">Over-structure, lack of flexibility, anything that feels like it requires them to stay in one place. Rigid commitments end the relationship.</div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p3-t6">
+    <div class="content-block">
+      <div class="section-title">Awareness</div>
+      <div class="msg-card"><div class="msg-type" style="color:var(--p3)">Hero</div><div class="msg-text">"Stay dreaming wherever you go. Build something that moves with you."</div><div class="msg-note">Directly from the research. Honors the freedom while pointing toward depth.</div></div>
+      <div class="msg-card"><div class="msg-type" style="color:var(--p3)">Variant</div><div class="msg-text">"You've created freedom. Now give it a through-line."</div></div>
+    </div>
+    <div class="content-block">
+      <div class="section-title">Value proposition</div>
+      <div class="msg-card"><div class="msg-type" style="color:var(--p3)">Core</div><div class="msg-text">"dreamsedge travels with you. Connection and growth that don't reset every time you move — a consistent layer of depth across wherever life takes you."</div></div>
+    </div>
+    <div class="content-block">
+      <div class="section-title">CTA</div>
+      <div class="msg-card"><div class="msg-type" style="color:var(--p3)">Conversion</div><div class="msg-text">"Bring dreamsedge with you. Begin here."</div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p3-t7">
+    <div class="channel-grid">
+      <div class="channel-card"><div class="channel-name">IRL / retreats</div><div class="channel-text">The primary entry point. Shared physical experiences. Nomad retreats, coworking community events, group travel programs.</div></div>
+      <div class="channel-card"><div class="channel-name">Instagram / TikTok</div><div class="channel-text">Visual lifestyle content. Authentic over polished. "This is the depth I found while moving" not "here's a productivity system."</div></div>
+      <div class="channel-card"><div class="channel-name">Community Slack / Discord</div><div class="channel-text">Meet them where their loose communities already live. A dreamsedge presence in nomad community spaces they already inhabit.</div></div>
+      <div class="channel-card"><div class="channel-name">In-app</div><div class="channel-text">Location-agnostic from day one. Onboarding that makes clear: dreamsedge travels with you. Community connections that persist across cities.</div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p3-t8">
+    <div class="section-title">Tone calibration</div>
+    <div class="tone-row"><span class="tone-pill">Freedom-honoring</span><span class="tone-pill">Forward-moving</span><span class="tone-pill">Grounded not heavy</span><span class="tone-pill">Portable</span><span class="tone-pill">Non-restrictive</span></div>
+    <div class="section-title">Voice notes</div>
+    <div class="voice-notes">
+      <div class="voice-note"><strong>Pacing:</strong> Light and forward. Never heavy or slow. This persona moves fast and copy needs to keep up without feeling rushed.</div>
+      <div class="voice-note"><strong>Vocabulary:</strong> "Stay dreaming," "build something," "moves with you," "wherever you go." Avoid "settle," "commit long-term," "stability" as aspirational framing.</div>
+      <div class="voice-note"><strong>Structure:</strong> Honor the freedom first. Then open the door to depth. Never imply they need to slow down or stay still to find meaning.</div>
+      <div class="voice-note"><strong>What to avoid:</strong> "Settle down." "Commit long-term." Anything implying their lifestyle is the problem. The lifestyle is not the problem. The absence of depth within it is.</div>
+      <div class="voice-note"><strong>Does it sound like dreamsedge?</strong> Read it out loud. Calm, warm, unhurried, sincere. That voice belongs to the brand.</div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p3-t9">
+    <div class="say-grid">
+      <div class="say-card no"><div class="say-label">Never say</div><div class="say-item">"Settle down"</div><div class="say-item">"Commit long-term"</div><div class="say-item">"Build roots"</div><div class="say-item">"Stop running"</div><div class="say-item">Anything implying their lifestyle is the problem</div></div>
+      <div class="say-card yes"><div class="say-label">Always say</div><div class="say-item">"Stay dreaming wherever you go"</div><div class="say-item">"Build something that moves with you"</div><div class="say-item">"Connection beyond place"</div><div class="say-item">"Depth beyond experience"</div><div class="say-item">"A through-line across movement"</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PERSONA 4: CREATIVE REAWAKENING -->
+<div class="section" id="section-p4">
+  <div class="persona-header">
+    <div class="persona-eyebrow" style="color:var(--p4)">Persona 04</div>
+    <div class="persona-name">Creative Reawakening</div>
+    <div class="persona-voice">"I don't want to be great at this. I just want to feel like I'm doing it again."</div>
+  </div>
+  <div class="tab-nav" id="tabs-p4">
+    <button class="tab-btn on" onclick="showTab('p4',0)" style="border-bottom-color:var(--p4)">Who they are</button>
+    <button class="tab-btn" onclick="showTab('p4',1)">Core tension</button>
+    <button class="tab-btn" onclick="showTab('p4',2)">Behaviors</button>
+    <button class="tab-btn" onclick="showTab('p4',3)">Emotional map</button>
+    <button class="tab-btn" onclick="showTab('p4',4)">Trust timeline</button>
+    <button class="tab-btn" onclick="showTab('p4',5)">dreamsedge opportunity</button>
+    <button class="tab-btn" onclick="showTab('p4',6)">Core messages</button>
+    <button class="tab-btn" onclick="showTab('p4',7)">By channel</button>
+    <button class="tab-btn" onclick="showTab('p4',8)">Tone + voice</button>
+    <button class="tab-btn" onclick="showTab('p4',9)">Say / never say</button>
+  </div>
+  <div class="tab-panel on" id="p4-t0">
+    <div class="content-block">
+      <div class="section-title">Profile</div>
+      <div class="principle-box"><div class="principle-text">Can be at any life stage. Often works in corporate, knowledge work, or structured environments. Competent, reliable, and often time-constrained. They feel a growing pull toward a part of themselves that has been neglected — most often their creative, expressive self. They are not trying to become someone new. They are trying to return to someone they once were. This is an identity reconnection persona, not a skill-building one.</div></div>
+    </div>
+    <div class="content-block">
+      <div class="section-title">Psychological profile</div>
+      <div class="insight-grid">
+        <div class="insight-card"><div class="insight-label">Growth orientation</div><div class="insight-text">Expansion-driven, not fear-driven. Optimizing for expression, aliveness, and reconnection — not mastery, performance, or external validation.</div></div>
+        <div class="insight-card"><div class="insight-label">Aliveness hunger</div><div class="insight-text">Strong. They know which version of themselves feels most alive. They miss it. That pull is the entry point dreamsedge answers.</div></div>
+        <div class="insight-card"><div class="insight-label">Reflective depth</div><div class="insight-text">Active inner listening. They have been sitting with this feeling for a long time. They know exactly what they've been missing.</div></div>
+        <div class="insight-card"><div class="insight-label">Relational openness</div><div class="insight-text">Cautiously open to shared environments. They want connection but only in spaces that feel safe, non-judgmental, and non-performative.</div></div>
+      </div>
+    </div>
+    <div class="content-block">
+      <div class="section-title">Language signals</div>
+      <div class="quote-card" style="border-left-color:var(--p4-mid)"><div class="quote-text">"I used to love doing this. I don't know why I stopped."</div></div>
+      <div class="quote-card" style="border-left-color:var(--p4-mid)"><div class="quote-text">"I miss the version of me who made things."</div></div>
+      <div class="quote-card" style="border-left-color:var(--p4-mid)"><div class="quote-text">"I want to get back into it. I just don't feel creative anymore."</div></div>
+      <div class="quote-card" style="border-left-color:var(--p4-mid)"><div class="quote-text">"I don't want to be great at this. I just want to feel like I'm doing it again."</div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p4-t1">
+    <div class="content-block">
+      <div class="section-title">The core tension</div>
+      <div class="principle-box"><div class="principle-text">They have built a life that works but lost touch with what made them feel alive. Externally they are responsible, productive, and often successful. Internally they feel a quiet disconnection from a part of themselves that once felt expressive, playful, or alive. This tension is distinct from the Purpose-Seeking Professional — it is less about career misalignment and more about identity disconnection. They are experiencing identity drift, not crisis.</div></div>
+    </div>
+    <div class="emotion-grid">
+      <div class="emotion-card before"><div class="emotion-label">External reality</div><div class="emotion-text">"I have responsibilities." "I don't have time for this." "I'm being productive and responsible."</div></div>
+      <div class="emotion-card before"><div class="emotion-label">Internal experience</div><div class="emotion-text">"I miss that part of me." "I feel disconnected from myself." "I'm not ignoring it — I'm just not answering it."</div></div>
+    </div>
+    <div class="content-block" style="margin-top:1.5rem">
+      <div class="section-title">What they are moving toward</div>
+      <div class="insight-grid">
+        <div class="insight-card"><div class="insight-label">Reconnection</div><div class="insight-text">Reclaiming a part of themselves that feels dormant. Not becoming a new person — returning to who they were.</div></div>
+        <div class="insight-card"><div class="insight-label">Expression</div><div class="insight-text">Creating without judgment or performance pressure. The absence of an audience is a feature, not a bug.</div></div>
+        <div class="insight-card"><div class="insight-label">Aliveness</div><div class="insight-text">Feeling present, engaged, and internally connected. "I feel like myself when I do this."</div></div>
+        <div class="insight-card"><div class="insight-label">What they are not</div><div class="insight-text">Not trying to become professional artists, monetize creativity, or radically change their lives. They are trying to feel like themselves again through creation.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p4-t2">
+    <div class="content-block">
+      <div class="section-title">Where they spend time</div>
+      <div class="channel-grid">
+        <div class="channel-card"><div class="channel-name">Instagram</div><div class="channel-text">Creative inspiration. They follow artists, writers, and makers. Content-adjacent before community-engaged.</div></div>
+        <div class="channel-card"><div class="channel-name">Substack</div><div class="channel-text">Reflective and creative essays. They read about the creative life because they want permission to return to theirs.</div></div>
+        <div class="channel-card"><div class="channel-name">YouTube</div><div class="channel-text">Creative journeys and storytelling. They watch people doing the work they miss. Vicarious until they find their way back.</div></div>
+        <div class="channel-card"><div class="channel-name">Creative platforms</div><div class="channel-text">Skillshare, Domestika, the 100 Day Project. They invest in re-entry. What they lack is identity support and sustained community around the work.</div></div>
+      </div>
+    </div>
+    <div class="content-block">
+      <div class="section-title">Competitive landscape from their POV</div>
+      <div class="principle-box"><div class="principle-text">The ecosystem offers tools but not transformation. Creative learning platforms provide skill development and inspiration but lack identity-level support, emotional safety, and sustained community. Workarounds include starting projects alone, abandoning hobbies, and cycling in and out of creative effort. The gap is not access to creativity. The gap is a supported path back to it.</div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p4-t3">
+    <div class="content-block">
+      <div class="section-title">Before dreamsedge</div>
+      <div class="emotion-grid">
+        <div class="emotion-card before"><div class="emotion-label">Dominant feeling</div><div class="emotion-text">Aware of the gap and quietly grieving it. The pull toward the creative self is persistent. They have not stopped wanting. They have stopped answering.</div></div>
+        <div class="emotion-card before"><div class="emotion-label">Relational state</div><div class="emotion-text">Cautiously open. They want to share the work but only if it's safe. They need no expectation of being "good" and others who are also starting imperfectly.</div></div>
+      </div>
+    </div>
+    <div class="content-block">
+      <div class="section-title">After dreamsedge</div>
+      <div class="emotion-grid">
+        <div class="emotion-card after"><div class="emotion-label">The shift</div><div class="emotion-text">Reclamation. "I'm making time for this again." "I feel like myself when I do this." "I'm not ignoring that part of me anymore." Identity continuity restored.</div></div>
+        <div class="emotion-card after"><div class="emotion-label">Evangelism</div><div class="emotion-text">Medium to high. They share when they feel reconnected, proud, and safe. "I started doing this again." "This made me feel like myself." Personal and powerful.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p4-t4">
+    <div class="trust-timeline">
+      <div class="trust-phase"><div class="trust-marker"><div class="trust-dot" style="background:var(--p4)"></div><div class="trust-time">First contact</div></div><div class="trust-body"><div class="trust-title">Tone check</div><div class="trust-desc">Highly sensitive to environment and tone. Does this feel approachable? Is it for people like me? Is there an expectation of being "good"? If yes to the last — they leave.</div></div></div>
+      <div class="trust-phase"><div class="trust-marker"><div class="trust-dot" style="background:var(--p4-mid)"></div><div class="trust-time">Weeks 1–2</div></div><div class="trust-body"><div class="trust-title">Private first</div><div class="trust-desc">One small creative act done privately. Not sharing — just doing. The platform needs to feel like a safe studio before it feels like a community.</div></div></div>
+      <div class="trust-phase"><div class="trust-marker"><div class="trust-dot" style="background:var(--p4-light)"></div><div class="trust-time">Month 1</div></div><div class="trust-body"><div class="trust-title">Permission established</div><div class="trust-desc">If the environment is non-judgmental and others are also starting imperfectly, they go deeper. The feeling of reconnection with the creative self is the retention mechanism.</div></div></div>
+      <div class="trust-phase"><div class="trust-marker"><div class="trust-dot" style="background:#B5D4F4"></div><div class="trust-time">Month 2+</div></div><div class="trust-body"><div class="trust-title">Sharing and contributing</div><div class="trust-desc">When safe, they become active contributors who encourage others. "This made me feel like myself" becomes their evangelism. The most personal recommendation.</div></div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p4-t5">
+    <div class="content-block">
+      <div class="section-title">The dreamsedge fit</div>
+      <div class="principle-box"><div class="principle-text">dreamsedge fits as a place to return to yourself through creativity. It offers low-pressure entry, shared exploration, and emotional safety. It replaces isolated attempts, abandoned hobbies, and passive consumption with a supported path back. There are few unified spaces that integrate creative reconnection, identity restoration, and shared practice. dreamsedge is that space.</div></div>
+    </div>
+    <div class="insight-grid">
+      <div class="insight-card"><div class="insight-label">Why it resonates</div><div class="insight-text">"This feels approachable." "This is for people like me." "I don't need to be good to start." The absence of performance pressure is the product.</div></div>
+      <div class="insight-card"><div class="insight-label">Buying trigger</div><div class="insight-text">Approachability over credentials. Non-performative environment. Others who are also experimenting and starting imperfectly.</div></div>
+      <div class="insight-card"><div class="insight-label">What it replaces</div><div class="insight-text">Isolated attempts, abandoned hobbies, passive consumption of other people's creative work. dreamsedge is the supported path back.</div></div>
+      <div class="insight-card"><div class="insight-label">Trust killer</div><div class="insight-text">Elitism, perfectionism, overly polished environments. Anything that implies they need to be at a certain level to belong.</div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p4-t6">
+    <div class="content-block">
+      <div class="section-title">Awareness</div>
+      <div class="msg-card"><div class="msg-type" style="color:var(--p4)">Hero</div><div class="msg-text">"Come back to yourself. You don't have to be good to begin."</div><div class="msg-note">Directly from the research. Non-performative entry. The beginning is the win.</div></div>
+      <div class="msg-card"><div class="msg-type" style="color:var(--p4)">Variant</div><div class="msg-text">"Make space for what you've been missing. The part of you that makes things is still there."</div></div>
+    </div>
+    <div class="content-block">
+      <div class="section-title">Value proposition</div>
+      <div class="msg-card"><div class="msg-type" style="color:var(--p4)">Core</div><div class="msg-text">"dreamsedge is a private studio for the work you're ready to begin again. No audience. No performance. No pressure to be further along than you are."</div></div>
+    </div>
+    <div class="content-block">
+      <div class="section-title">CTA</div>
+      <div class="msg-card"><div class="msg-type" style="color:var(--p4)">Conversion</div><div class="msg-text">"Start again. This time with company."</div><div class="msg-note">"You don't have to be good to begin" and "Come back to yourself" are the language from research that works.</div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p4-t7">
+    <div class="channel-grid">
+      <div class="channel-card"><div class="channel-name">Instagram</div><div class="channel-text">Process not product. The act of beginning celebrated over finishing. Captions that feel like quiet permission from someone who understands.</div></div>
+      <div class="channel-card"><div class="channel-name">Substack / email</div><div class="channel-text">Letters about the creative life that are honest about the drift and forward about the return. This persona shares these with the one person who will understand.</div></div>
+      <div class="channel-card"><div class="channel-name">Creative communities</div><div class="channel-text">The 100 Day Project ecosystem, creative Substacks, low-pressure creative challenges. Meet them where they're already attempting re-entry.</div></div>
+      <div class="channel-card"><div class="channel-name">In-app</div><div class="channel-text">Private first. "What is the creative work you're ready to begin?" as the opening question. No metrics early. Just space to name it and take the first step.</div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p4-t8">
+    <div class="section-title">Tone calibration</div>
+    <div class="tone-row"><span class="tone-pill">Invitational not evaluative</span><span class="tone-pill">Safe and warm</span><span class="tone-pill">Beginning as victory</span><span class="tone-pill">Identity-level not skill-level</span><span class="tone-pill">Private before public</span></div>
+    <div class="section-title">Voice notes</div>
+    <div class="voice-notes">
+      <div class="voice-note"><strong>Pacing:</strong> Gentle and unhurried. Never rushed. This persona needs to feel that the space will wait for them without pressure.</div>
+      <div class="voice-note"><strong>Vocabulary:</strong> "Come back to yourself." "Begin again." "The work is still there." "You don't have to be good." Never "master," "become a creator," "level up your skills."</div>
+      <div class="voice-note"><strong>Structure:</strong> Honor the gap without dramatizing it. Open the door without requiring them to walk through it immediately. The space itself is the invitation.</div>
+      <div class="voice-note"><strong>What to avoid:</strong> Elitism. Perfectionism. Monetization framing. Anything that makes output the point or introduces an audience before safety is established.</div>
+      <div class="voice-note"><strong>Does it sound like dreamsedge?</strong> Read it out loud. Calm, warm, unhurried, sincere. That voice belongs to the brand.</div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p4-t9">
+    <div class="say-grid">
+      <div class="say-card no"><div class="say-label">Never say</div><div class="say-item">"Master your craft"</div><div class="say-item">"Become a creator"</div><div class="say-item">"Level up your skills"</div><div class="say-item">"Monetize your creativity"</div><div class="say-item">"Build your audience"</div><div class="say-item">Anything making output or performance the point</div></div>
+      <div class="say-card yes"><div class="say-label">Always say</div><div class="say-item">"Come back to yourself"</div><div class="say-item">"You don't have to be good to begin"</div><div class="say-item">"Make space for what you've been missing"</div><div class="say-item">"Private space to start"</div><div class="say-item">"The work is still there"</div><div class="say-item">"Begin again. With company."</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PERSONA 5: CONTINUING EDUCATION -->
+<div class="section" id="section-p5">
+  <div class="persona-header">
+    <div class="persona-eyebrow" style="color:var(--p5)">Persona 05</div>
+    <div class="persona-name">Continuing Education</div>
+    <div class="persona-voice">"I'm learning a lot. I just want it to actually matter in my life."</div>
+  </div>
+  <div class="tab-nav" id="tabs-p5">
+    <button class="tab-btn on" onclick="showTab('p5',0)" style="border-bottom-color:var(--p5)">Who they are</button>
+    <button class="tab-btn" onclick="showTab('p5',1)">Core tension</button>
+    <button class="tab-btn" onclick="showTab('p5',2)">Behaviors</button>
+    <button class="tab-btn" onclick="showTab('p5',3)">Emotional map</button>
+    <button class="tab-btn" onclick="showTab('p5',4)">Trust timeline</button>
+    <button class="tab-btn" onclick="showTab('p5',5)">dreamsedge opportunity</button>
+    <button class="tab-btn" onclick="showTab('p5',6)">Core messages</button>
+    <button class="tab-btn" onclick="showTab('p5',7)">By channel</button>
+    <button class="tab-btn" onclick="showTab('p5',8)">Tone + voice</button>
+    <button class="tab-btn" onclick="showTab('p5',9)">Say / never say</button>
+  </div>
+  <div class="tab-panel on" id="p5-t0">
+    <div class="content-block">
+      <div class="section-title">Profile</div>
+      <div class="principle-box"><div class="principle-text">Late 20s to 50s. Professionals, mid-career individuals, and lifelong learners who actively invest in structured learning but increasingly feel that learning alone is not enough. They are not trying to fix something. They are trying to expand their life. They are curious, engaged, and growth-oriented — but not yet fully activated. This is an integration-seeking growth persona, not a transformation-first one.</div></div>
+    </div>
+    <div class="content-block">
+      <div class="section-title">Psychological profile</div>
+      <div class="insight-grid">
+        <div class="insight-card"><div class="insight-label">Growth orientation</div><div class="insight-text">Expansion-driven. Optimizing for learning, growth, and intellectual expansion — not identity transformation or deep introspection.</div></div>
+        <div class="insight-card"><div class="insight-label">Aliveness hunger</div><div class="insight-text">Moderate to strong. They feel most alive when they are growing. The question is whether growth is translating into how they actually live.</div></div>
+        <div class="insight-card"><div class="insight-label">Reflective depth</div><div class="insight-text">Moderate. They think deeply about ideas but haven't yet found the bridge between intellectual exploration and embodied change.</div></div>
+        <div class="insight-card"><div class="insight-label">Relational openness</div><div class="insight-text">Moderate. Engages when structured, less likely to initiate. They need clear facilitation and defined pathways into relational depth.</div></div>
+      </div>
+    </div>
+    <div class="content-block">
+      <div class="section-title">Language signals</div>
+      <div class="quote-card" style="border-left-color:var(--p5-mid)"><div class="quote-text">"I'm learning a lot. I just want it to actually matter in my life."</div></div>
+      <div class="quote-card" style="border-left-color:var(--p5-mid)"><div class="quote-text">"I don't need more information. I need a way to apply it."</div></div>
+      <div class="quote-card" style="border-left-color:var(--p5-mid)"><div class="quote-text">"I want to keep growing — but in a way that feels meaningful, not just interesting."</div></div>
+      <div class="quote-card" style="border-left-color:var(--p5-mid)"><div class="quote-text">"What I'm learning isn't fully changing how I live."</div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p5-t1">
+    <div class="content-block">
+      <div class="section-title">The core tension</div>
+      <div class="principle-box"><div class="principle-text">They are learning a lot but it is not fully changing how they live. Externally they are engaged in continuous learning and development. Internally they feel that much of this learning remains abstract or disconnected from their day-to-day experience. They are not dissatisfied with learning itself. They are beginning to question its impact. Unlike other personas, their entry point is intellectual. Their desired outcome is embodied and relational.</div></div>
+    </div>
+    <div class="emotion-grid">
+      <div class="emotion-card before"><div class="emotion-label">External reality</div><div class="emotion-text">"I'm learning a lot." "I'm taking courses, attending programs, engaging with ideas." "I am growing intellectually."</div></div>
+      <div class="emotion-card before"><div class="emotion-label">Internal experience</div><div class="emotion-text">"It's not fully changing how I live." "Much of this stays abstract." "I want it to matter more in my actual life."</div></div>
+    </div>
+    <div class="content-block" style="margin-top:1.5rem">
+      <div class="section-title">What they are moving toward</div>
+      <div class="insight-grid">
+        <div class="insight-card"><div class="insight-label">Growth</div><div class="insight-text">Expanding knowledge, perspective, and capability. They are already invested in this. dreamsedge deepens it.</div></div>
+        <div class="insight-card"><div class="insight-label">Application</div><div class="insight-text">Translating ideas into lived experience. The bridge between what they learn and how they live.</div></div>
+        <div class="insight-card"><div class="insight-label">Meaning</div><div class="insight-text">Ensuring learning feels personally relevant and impactful. "What I'm learning actually changes how I live."</div></div>
+        <div class="insight-card"><div class="insight-label">What better looks like</div><div class="insight-text">"This feels relevant to me, not just interesting." "I'm applying this, not just understanding it." "I'm growing in a way that shows up in my life."</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p5-t2">
+    <div class="content-block">
+      <div class="section-title">Where they spend time</div>
+      <div class="channel-grid">
+        <div class="channel-card"><div class="channel-name">Continuing education</div><div class="channel-text">Stanford Continuing Studies, General Assembly, executive programs. Already invested in structured learning environments.</div></div>
+        <div class="channel-card"><div class="channel-name">Online platforms</div><div class="channel-text">Coursera, certificate programs, structured online learning. They follow through on courses more than most personas.</div></div>
+        <div class="channel-card"><div class="channel-name">Workshops</div><div class="channel-text">Single-session and short-format learning. They value clear outcomes and defined learning experiences.</div></div>
+        <div class="channel-card"><div class="channel-name">Discussion groups</div><div class="channel-text">Occasional discussion without continuity. They engage when facilitated and guided. They are less likely to self-organize.</div></div>
+      </div>
+    </div>
+    <div class="content-block">
+      <div class="section-title">Competitive landscape from their POV</div>
+      <div class="principle-box"><div class="principle-text">The ecosystem provides knowledge but not integration. Structured learning platforms provide structure, credibility, and clear outcomes but lack personal relevance, relational engagement, and sustained application. Workarounds: taking multiple disconnected courses, note-taking without follow-through, occasional discussion without continuity. The gap is not access to learning. The gap is turning learning into lived experience.</div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p5-t3">
+    <div class="content-block">
+      <div class="section-title">Before dreamsedge</div>
+      <div class="emotion-grid">
+        <div class="emotion-card before"><div class="emotion-label">Dominant feeling</div><div class="emotion-text">Engaged but not activated. They are accumulating knowledge and insight without a clear bridge to how they want to live. Growth without integration.</div></div>
+        <div class="emotion-card before"><div class="emotion-label">Relational state</div><div class="emotion-text">Moderate openness. They engage when structured and facilitated. They haven't yet found the format that bridges intellectual growth with relational depth and personal application.</div></div>
+      </div>
+    </div>
+    <div class="content-block">
+      <div class="section-title">After dreamsedge</div>
+      <div class="emotion-grid">
+        <div class="emotion-card after"><div class="emotion-label">The shift</div><div class="emotion-text">Integration. "What I'm learning actually changes how I live." The bridge between ideas and lived experience is finally real. Growth feels personally relevant, not just intellectually interesting.</div></div>
+        <div class="emotion-card after"><div class="emotion-label">Evangelism</div><div class="emotion-text">Medium. They share when they gain clear value and can articulate outcomes. "I started applying this." "This changed how I approach things." Credibility-driven referrals.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p5-t4">
+    <div class="trust-timeline">
+      <div class="trust-phase"><div class="trust-marker"><div class="trust-dot" style="background:var(--p5)"></div><div class="trust-time">First contact</div></div><div class="trust-body"><div class="trust-title">Credibility check</div><div class="trust-desc">Will I learn something valuable? What is the outcome? They evaluate dreamsedge the way they evaluate any learning investment — through clarity, structure, and evidence of real outcomes.</div></div></div>
+      <div class="trust-phase"><div class="trust-marker"><div class="trust-dot" style="background:var(--p5-mid)"></div><div class="trust-time">Weeks 1–2</div></div><div class="trust-body"><div class="trust-title">Structured exploration</div><div class="trust-desc">They thrive in clear pathways. They need structured entry — a defined first step that feels productive and purposeful, not open-ended or ambiguous.</div></div></div>
+      <div class="trust-phase"><div class="trust-marker"><div class="trust-dot" style="background:var(--p5-light)"></div><div class="trust-time">Month 1</div></div><div class="trust-body"><div class="trust-title">Integration point</div><div class="trust-desc">If they can articulate how dreamsedge is changing how they live — not just what they're learning — they deepen their commitment. The integration is the retention mechanism.</div></div></div>
+      <div class="trust-phase"><div class="trust-marker"><div class="trust-dot" style="background:#FAC775"></div><div class="trust-time">Month 2+</div></div><div class="trust-body"><div class="trust-title">Outcome advocate</div><div class="trust-desc">Commits and refers when they can tell a clear story of application and change. They recommend dreamsedge to peers who are also invested in growth.</div></div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p5-t5">
+    <div class="content-block">
+      <div class="section-title">The dreamsedge fit</div>
+      <div class="principle-box"><div class="principle-text">dreamsedge fits as a bridge between learning and lived experience. It offers integration, application, and connection. This persona is not seeking more knowledge. They are seeking a way to make growth real in their life. dreamsedge is the answer to the gap they've been navigating alone.</div></div>
+    </div>
+    <div class="insight-grid">
+      <div class="insight-card"><div class="insight-label">Why it resonates</div><div class="insight-text">It integrates reflection, community, and action in a way that no existing platform does. The bridge between learning and living is the core offer.</div></div>
+      <div class="insight-card"><div class="insight-label">Buying trigger</div><div class="insight-text">"Will this actually change how I live?" Clear structure and defined outcomes. Evidence that others have made the bridge from learning to application.</div></div>
+      <div class="insight-card"><div class="insight-label">Entry point</div><div class="insight-text">Partner with continuing education programs and environments where this persona already invests. dreamsedge as the integration layer for growth they're already pursuing.</div></div>
+      <div class="insight-card"><div class="insight-label">Trust killer</div><div class="insight-text">Lack of clarity, lack of structure, vague outcomes. Also: anything that feels like just another course. dreamsedge must clearly differentiate as application and community, not content.</div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p5-t6">
+    <div class="content-block">
+      <div class="section-title">Awareness</div>
+      <div class="msg-card"><div class="msg-type" style="color:var(--p5)">Hero</div><div class="msg-text">"Turn learning into life. Make growth real."</div><div class="msg-note">Directly from the research. Addresses the exact gap this persona has been navigating.</div></div>
+      <div class="msg-card"><div class="msg-type" style="color:var(--p5)">Variant</div><div class="msg-text">"You've been growing. dreamsedge is where that growth starts to show up in how you live."</div></div>
+    </div>
+    <div class="content-block">
+      <div class="section-title">Value proposition</div>
+      <div class="msg-card"><div class="msg-type" style="color:var(--p5)">Core</div><div class="msg-text">"dreamsedge is the bridge between what you're learning and how you live. Not another course. A place where growth becomes real, relational, and applied."</div></div>
+    </div>
+    <div class="content-block">
+      <div class="section-title">CTA</div>
+      <div class="msg-card"><div class="msg-type" style="color:var(--p5)">Conversion</div><div class="msg-text">"Make growth real. Begin here."</div><div class="msg-note">"Turn learning into life" and "Make growth real" are the language from research that works.</div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p5-t7">
+    <div class="channel-grid">
+      <div class="channel-card"><div class="channel-name">Continuing ed partnerships</div><div class="channel-text">Direct integration with programs they already attend. Stanford Continuing Studies, General Assembly, executive education environments.</div></div>
+      <div class="channel-card"><div class="channel-name">LinkedIn</div><div class="channel-text">Professional development framing. Content that bridges intellectual growth and personal application. Insights with clear real-world relevance.</div></div>
+      <div class="channel-card"><div class="channel-name">Email</div><div class="channel-text">Structured and substantive. Subject lines that frame application: "What you're learning is ready to change how you live." Clear, outcome-oriented.</div></div>
+      <div class="channel-card"><div class="channel-name">In-app</div><div class="channel-text">Clear structure from day one. Defined first steps. Progress shown as application and integration, not just content consumption.</div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p5-t8">
+    <div class="section-title">Tone calibration</div>
+    <div class="tone-row"><span class="tone-pill">Intellectually respecting</span><span class="tone-pill">Clear and structured</span><span class="tone-pill">Application-forward</span><span class="tone-pill">Warm but precise</span><span class="tone-pill">Outcome-oriented</span></div>
+    <div class="section-title">Voice notes</div>
+    <div class="voice-notes">
+      <div class="voice-note"><strong>Pacing:</strong> Efficient and clear. This persona values their time and expects substance. Dense paragraphs are fine when the content earns the density.</div>
+      <div class="voice-note"><strong>Vocabulary:</strong> "Make growth real." "Turn learning into life." "Application" and "integration" are trusted words. "Another course" is the thing to differentiate from.</div>
+      <div class="voice-note"><strong>Structure:</strong> Lead with the outcome. Show the bridge between learning and living. Clarity and relevance before warmth — though warmth matters too.</div>
+      <div class="voice-note"><strong>What to avoid:</strong> Vague transformation language. "Take another course." Anything that positions dreamsedge as more content to consume rather than a space to apply and integrate.</div>
+      <div class="voice-note"><strong>Does it sound like dreamsedge?</strong> Read it out loud. Calm, warm, unhurried, sincere. That voice belongs to the brand.</div>
+    </div>
+  </div>
+  <div class="tab-panel" id="p5-t9">
+    <div class="say-grid">
+      <div class="say-card no"><div class="say-label">Never say</div><div class="say-item">"Take another course"</div><div class="say-item">"More content"</div><div class="say-item">"Information overload solution"</div><div class="say-item">Vague transformation language</div><div class="say-item">Anything positioning dreamsedge as content</div></div>
+      <div class="say-card yes"><div class="say-label">Always say</div><div class="say-item">"Turn learning into life"</div><div class="say-item">"Make growth real"</div><div class="say-item">"The bridge between learning and living"</div><div class="say-item">"Not another course — a place to apply"</div><div class="say-item">"Growth that shows up in how you live"</div></div>
+    </div>
+  </div>
+</div>
+<!-- ONBOARDING FLOW -->
+<div class="section" id="section-onboarding">
+  <div class="page-header">
+    <div class="page-eyebrow">dreamsedge Internal Reference</div>
+    <div class="page-title">Onboarding Flow</div>
+    <div class="page-desc">Step through the message and encouragement experience from sign-up to first dream articulation. A shared foundation that splits at key moments by persona. Use the navigator below to move through each stage.</div>
+  </div>
+
+  <div style="padding:2rem 3rem;max-width:960px">
+
+    <!-- STEP NAVIGATOR -->
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:2rem;flex-wrap:wrap">
+      <button class="ob-step-btn on" onclick="showStep(0)" id="ob-btn-0" style="padding:7px 14px;border-radius:999px;border:1px solid rgba(30,58,52,0.2);background:#E9E4D8;color:#1E3A34;font-size:12px;font-weight:500;cursor:pointer;font-family:inherit">01 Welcome</button>
+      <button class="ob-step-btn" onclick="showStep(1)" id="ob-btn-1" style="padding:7px 14px;border-radius:999px;border:1px solid rgba(30,58,52,0.15);background:transparent;color:#7A9490;font-size:12px;font-weight:400;cursor:pointer;font-family:inherit">02 First Question</button>
+      <button class="ob-step-btn" onclick="showStep(2)" id="ob-btn-2" style="padding:7px 14px;border-radius:999px;border:1px solid rgba(30,58,52,0.15);background:transparent;color:#7A9490;font-size:12px;font-weight:400;cursor:pointer;font-family:inherit">03 Dream Articulation</button>
+      <button class="ob-step-btn" onclick="showStep(3)" id="ob-btn-3" style="padding:7px 14px;border-radius:999px;border:1px solid rgba(30,58,52,0.15);background:transparent;color:#7A9490;font-size:12px;font-weight:400;cursor:pointer;font-family:inherit">04 Persona Split</button>
+      <button class="ob-step-btn" onclick="showStep(4)" id="ob-btn-4" style="padding:7px 14px;border-radius:999px;border:1px solid rgba(30,58,52,0.15);background:transparent;color:#7A9490;font-size:12px;font-weight:400;cursor:pointer;font-family:inherit">05 First Move</button>
+      <button class="ob-step-btn" onclick="showStep(5)" id="ob-btn-5" style="padding:7px 14px;border-radius:999px;border:1px solid rgba(30,58,52,0.15);background:transparent;color:#7A9490;font-size:12px;font-weight:400;cursor:pointer;font-family:inherit">06 Follow-up</button>
+      <button class="ob-step-btn" onclick="showStep(6)" id="ob-btn-6" style="padding:7px 14px;border-radius:999px;border:1px solid rgba(30,58,52,0.15);background:transparent;color:#7A9490;font-size:12px;font-weight:400;cursor:pointer;font-family:inherit">07 Non-Negotiables</button>
+    </div>
+
+    <!-- PROGRESS BAR -->
+    <div style="height:3px;background:#E9E4D8;border-radius:2px;margin-bottom:2rem">
+      <div id="ob-progress" style="height:3px;background:#6C8F7E;border-radius:2px;width:14%;transition:width 0.3s ease"></div>
+    </div>
+
+    <!-- STEP 01 -->
+    <div class="ob-step on" id="ob-step-0">
+      <div class="section-title" style="color:#6C8F7E">Step 01 of 07   Welcome</div>
+      <div class="principle-box" style="margin-bottom:1.25rem"><div class="principle-text">The first message sets everything. The tone here determines whether this person stays or leaves. No excitement, no urgency, no "let's get started." Just genuine warmth and complete unhurriedness. The arrival itself is the moment worth honoring.</div></div>
+      <div class="msg-card">
+        <div class="msg-type" style="color:#6C8F7E">Immediately after sign-up</div>
+        <div class="msg-text">"You're here. That already means something. Take your time   there's no rush, no right way to start, and nothing you need to prove. This space is yours."</div>
+        <div class="msg-note">Never "welcome to the community" or "let's get started." Never celebrate loudly. Let the space breathe.</div>
+      </div>
+      <div class="msg-card">
+        <div class="msg-type" style="color:#6C8F7E">24 hours later   if no action taken</div>
+        <div class="msg-text">"No rush. We're here when you're ready. Some people need a few days just to settle in   that's completely normal. Your dream isn't going anywhere."</div>
+        <div class="msg-note">Never "we noticed you haven't started yet." Never create absence anxiety. Patience is the product at this stage.</div>
+      </div>
+      <div style="display:flex;justify-content:flex-end;margin-top:1.5rem">
+        <button onclick="showStep(1)" style="padding:10px 24px;background:#1E3A34;color:#FAF9F6;border:none;border-radius:999px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit">Next step</button>
+      </div>
+    </div>
+
+    <!-- STEP 02 -->
+    <div class="ob-step" id="ob-step-1" style="display:none">
+      <div class="section-title" style="color:#6C8F7E">Step 02 of 07   The First Question</div>
+      <div class="principle-box" style="margin-bottom:1.25rem"><div class="principle-text">The single most important moment in the entire onboarding. This question must feel like an invitation, not an intake form. It should be the kind of question that makes someone pause, breathe, and feel seen before they've even answered it.</div></div>
+      <div class="msg-card">
+        <div class="msg-type" style="color:#6C8F7E">The opening question</div>
+        <div class="msg-text">"If you could move toward one thing   something real, something yours   what would it be? Don't worry about being precise. Just let something come."</div>
+        <div class="msg-note">"Don't worry about being precise" is doing critical work. It lowers the barrier without lowering the meaning. Whatever they write is right.</div>
+      </div>
+      <div class="msg-card">
+        <div class="msg-type" style="color:#6C8F7E">Immediately after they answer</div>
+        <div class="msg-text">"That's real. Thank you for naming it. Now let's begin to give it some shape."</div>
+        <div class="msg-note">"That's real" is the most important phrase in dreamsedge's vocabulary. Short, sincere, forward. It validates without inflating.</div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:1.5rem">
+        <button onclick="showStep(0)" style="padding:10px 24px;background:transparent;color:#3D5C55;border:1px solid rgba(30,58,52,0.2);border-radius:999px;font-size:13px;cursor:pointer;font-family:inherit">Previous</button>
+        <button onclick="showStep(2)" style="padding:10px 24px;background:#1E3A34;color:#FAF9F6;border:none;border-radius:999px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit">Next step</button>
+      </div>
+    </div>
+
+    <!-- STEP 03 -->
+    <div class="ob-step" id="ob-step-2" style="display:none">
+      <div class="section-title" style="color:#6C8F7E">Step 03 of 07   Dream Articulation</div>
+      <div class="principle-box" style="margin-bottom:1.25rem"><div class="principle-text">A short sequence of questions that helps the person move from a feeling or vague direction to something named and owned. Never more than three questions in a session. Always framed as exploration, never as a form to complete.</div></div>
+      <div class="insight-grid">
+        <div class="insight-card">
+          <div class="insight-label">Question A</div>
+          <div class="insight-text">"When you imagine moving toward this   what does it feel like? Not what it looks like. What it feels like."</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-label">Question B</div>
+          <div class="insight-text">"What's one small thing that would tell you this is real and moving? Not the whole dream   just one signal."</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-label">Question C</div>
+          <div class="insight-text">"What's been in the way? Not to dwell there   just to name it, so we can move past it together."</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-label">After all three answered</div>
+          <div class="insight-text">"You've just done something most people never do. You gave your dream a name and a direction. That's not small. That's everything."</div>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:1.5rem">
+        <button onclick="showStep(1)" style="padding:10px 24px;background:transparent;color:#3D5C55;border:1px solid rgba(30,58,52,0.2);border-radius:999px;font-size:13px;cursor:pointer;font-family:inherit">Previous</button>
+        <button onclick="showStep(3)" style="padding:10px 24px;background:#1E3A34;color:#FAF9F6;border:none;border-radius:999px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit">Next step</button>
+      </div>
+    </div>
+
+    <!-- STEP 04   PERSONA SPLIT -->
+    <div class="ob-step" id="ob-step-3" style="display:none">
+      <div class="section-title" style="color:#F2B880">Step 04 of 07   Persona Split</div>
+      <div class="principle-box" style="margin-bottom:1.25rem"><div class="principle-text">Based on what they've shared in Steps 02 and 03, the experience adapts. The split is not a dramatic fork   it's a subtle shift in language, pacing, and encouragement that makes the person feel genuinely understood. These messages replace generic encouragement from this point forward.</div></div>
+
+      <!-- PERSONA TABS FOR SPLIT -->
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem">
+        <button class="split-btn on" onclick="showSplit(0)" style="padding:6px 14px;border-radius:999px;border:1px solid var(--p1);background:var(--p1-light);color:var(--p1);font-size:12px;font-weight:500;cursor:pointer;font-family:inherit">Purpose-Seeking Pro</button>
+        <button class="split-btn" onclick="showSplit(1)" style="padding:6px 14px;border-radius:999px;border:1px solid rgba(30,58,52,0.15);background:transparent;color:#7A9490;font-size:12px;cursor:pointer;font-family:inherit">Values-Based Coworking</button>
+        <button class="split-btn" onclick="showSplit(2)" style="padding:6px 14px;border-radius:999px;border:1px solid rgba(30,58,52,0.15);background:transparent;color:#7A9490;font-size:12px;cursor:pointer;font-family:inherit">Digital Nomad</button>
+        <button class="split-btn" onclick="showSplit(3)" style="padding:6px 14px;border-radius:999px;border:1px solid rgba(30,58,52,0.15);background:transparent;color:#7A9490;font-size:12px;cursor:pointer;font-family:inherit">Creative Reawakening</button>
+        <button class="split-btn" onclick="showSplit(4)" style="padding:6px 14px;border-radius:999px;border:1px solid rgba(30,58,52,0.15);background:transparent;color:#7A9490;font-size:12px;cursor:pointer;font-family:inherit">Continuing Education</button>
+      </div>
+
+      <div class="split-panel on" id="split-0">
+        <div class="msg-card">
+          <div class="msg-type" style="color:var(--p1)">Quiet Achiever   encouragement message</div>
+          <div class="msg-text">"You don't have to move fast. The people who get there are rarely the ones who rushed. Take the next step when it feels right   not when it feels urgent. We'll be here."</div>
+          <div class="msg-note">Pacing: Slow and spacious. Never imply they're behind. Never introduce a timeline. The absence of urgency is the message.</div>
+        </div>
+        <div class="msg-card">
+          <div class="msg-type" style="color:var(--p1)">Check-in tone</div>
+          <div class="msg-text">"How's it feeling? No pressure to have moved yet   just checking in to say we're here and your dream is still waiting, exactly where you left it."</div>
+        </div>
+      </div>
+
+      <div class="split-panel" id="split-1" style="display:none">
+        <div class="msg-card">
+          <div class="msg-type" style="color:var(--p2)">Emerging Builder   encouragement message</div>
+          <div class="msg-text">"You've already started more times than most people ever will. That's not inconsistency   that's calibration. Now you have a process. Let's use it."</div>
+          <div class="msg-note">Reframes every prior attempt as an asset. Direct, forward, peer energy. Never imply they've been doing it wrong.</div>
+        </div>
+        <div class="msg-card">
+          <div class="msg-type" style="color:var(--p2)">Check-in tone</div>
+          <div class="msg-text">"What moved this week? Doesn't have to be big   even a thought that clarified something counts. Bring it here."</div>
+        </div>
+      </div>
+
+      <div class="split-panel" id="split-2" style="display:none">
+        <div class="msg-card">
+          <div class="msg-type" style="color:var(--p3)">Mid-Life Pivot   encouragement message</div>
+          <div class="msg-text">"Everything you've built brought you to this question. That's not wasted time   that's the foundation. The next chapter gets to stand on all of it."</div>
+          <div class="msg-note">Dignified and forward. Never reference crisis, loss, or starting over. Every word honors what came before.</div>
+        </div>
+        <div class="msg-card">
+          <div class="msg-type" style="color:var(--p3)">Check-in tone</div>
+          <div class="msg-text">"How is the question sitting with you? There's no wrong answer here   just your answer, developing in its own time."</div>
+        </div>
+      </div>
+
+      <div class="split-panel" id="split-3" style="display:none">
+        <div class="msg-card">
+          <div class="msg-type" style="color:var(--p4)">Creative Reawakening   encouragement message</div>
+          <div class="msg-text">"This is the space where you come back to yourself. No audience, no performance, no pressure to be further along than you are. Just the work and a community that gets it."</div>
+          <div class="msg-note">Precise, structured, respects their intelligence. Lead with the framework, let the warmth follow.</div>
+        </div>
+        <div class="msg-card">
+          <div class="msg-type" style="color:var(--p4)">Check-in tone</div>
+          <div class="msg-text">"What did you create or return to this week? Even something small counts. Especially something small."</div>
+        </div>
+      </div>
+
+      <div class="split-panel" id="split-4" style="display:none">
+        <div class="msg-card">
+          <div class="msg-type" style="color:var(--p5)">Continuing Education   encouragement message</div>
+          <div class="msg-text">"The work has been waiting for you. Not judging, not fading   just waiting. You're here now. That's the only condition that ever mattered. Let's begin."</div>
+          <div class="msg-note">Intimate and lyrical. Sacred without being precious. The beginning is the win   not the output.</div>
+        </div>
+        <div class="msg-card">
+          <div class="msg-type" style="color:var(--p5)">Check-in tone</div>
+          <div class="msg-text">"Did you show up for the work this week? Even once, even briefly   that counts. Tell us what happened."</div>
+        </div>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;margin-top:1.5rem">
+        <button onclick="showStep(2)" style="padding:10px 24px;background:transparent;color:#3D5C55;border:1px solid rgba(30,58,52,0.2);border-radius:999px;font-size:13px;cursor:pointer;font-family:inherit">Previous</button>
+        <button onclick="showStep(4)" style="padding:10px 24px;background:#1E3A34;color:#FAF9F6;border:none;border-radius:999px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit">Next step</button>
+      </div>
+    </div>
+
+    <!-- STEP 05 -->
+    <div class="ob-step" id="ob-step-4" style="display:none">
+      <div class="section-title" style="color:#6C8F7E">Step 05 of 07   First Real Move</div>
+      <div class="principle-box" style="margin-bottom:1.25rem"><div class="principle-text">The bridge between articulation and action. One small, named, time-bound move. Never a plan. Never a goal. Just one thing that makes the dream slightly more real in the next 48 hours.</div></div>
+      <div class="msg-card">
+        <div class="msg-type" style="color:#6C8F7E">Prompt to name one action</div>
+        <div class="msg-text">"What's one thing you could do in the next 48 hours that would move you   even slightly   toward this? Not a plan. Just one thing. Name it here."</div>
+        <div class="msg-note">48 hours is deliberate. Long enough to feel achievable, short enough to keep momentum. "Not a plan" removes the pressure to have it all figured out.</div>
+      </div>
+      <div class="msg-card">
+        <div class="msg-type" style="color:#6C8F7E">After they name their move</div>
+        <div class="msg-text">"That's your next step. It's real now. We'll check in   not to hold you accountable, but to celebrate when you've done it. Go."</div>
+        <div class="msg-note">"Not to hold you accountable" removes the fear of failure entirely. The follow-up becomes a celebration, not a check-in.</div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:1.5rem">
+        <button onclick="showStep(3)" style="padding:10px 24px;background:transparent;color:#3D5C55;border:1px solid rgba(30,58,52,0.2);border-radius:999px;font-size:13px;cursor:pointer;font-family:inherit">Previous</button>
+        <button onclick="showStep(5)" style="padding:10px 24px;background:#1E3A34;color:#FAF9F6;border:none;border-radius:999px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit">Next step</button>
+      </div>
+    </div>
+
+    <!-- STEP 06 -->
+    <div class="ob-step" id="ob-step-5" style="display:none">
+      <div class="section-title" style="color:#6C8F7E">Step 06 of 07   The 48-Hour Follow-Up</div>
+      <div class="principle-box" style="margin-bottom:1.25rem"><div class="principle-text">Two paths. Both are forward. Whether they completed the step or not, the message is always the same in spirit: nothing is lost, the dream is still real, and the next move is waiting whenever they are.</div></div>
+      <div class="msg-card">
+        <div class="msg-type" style="color:#6C8F7E">If they completed the step</div>
+        <div class="msg-text">"You did it. That step was real and it counts. This is how dreams move   not all at once, but one real thing at a time. What's next?"</div>
+        <div class="msg-note">Celebrate quietly. No exclamation marks. No "amazing!" Just the simple, grounded acknowledgment that something real happened.</div>
+      </div>
+      <div class="msg-card">
+        <div class="msg-type" style="color:#6C8F7E">If they did not complete the step</div>
+        <div class="msg-text">"Life happens. The step is still there when you're ready. Nothing has been lost   the dream is exactly where you left it. Take it when you're ready."</div>
+        <div class="msg-note">Never "no worries" or "that's okay"   both carry implied judgment. "Nothing has been lost" is purely forward. No apology required, no guilt introduced.</div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:1.5rem">
+        <button onclick="showStep(4)" style="padding:10px 24px;background:transparent;color:#3D5C55;border:1px solid rgba(30,58,52,0.2);border-radius:999px;font-size:13px;cursor:pointer;font-family:inherit">Previous</button>
+        <button onclick="showStep(6)" style="padding:10px 24px;background:#1E3A34;color:#FAF9F6;border:none;border-radius:999px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit">Non-Negotiables</button>
+      </div>
+    </div>
+
+    <!-- STEP 07   NON NEGOTIABLES -->
+    <div class="ob-step" id="ob-step-6" style="display:none">
+      <div class="section-title" style="color:#6C8F7E">Step 07 of 07   Onboarding Non-Negotiables</div>
+      <div class="principle-box" style="margin-bottom:1.25rem"><div class="principle-text">These are the rules that apply to every message, every stage, every persona. They are not guidelines   they are the standard. If a message doesn't pass all of these, rewrite it before it ships.</div></div>
+      <div class="insight-grid">
+        <div class="insight-card">
+          <div class="insight-label">No urgency. Ever.</div>
+          <div class="insight-text">Not even subtle urgency. No "don't wait," no "now is the time," no countdown energy of any kind. Patience is the brand.</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-label">No absence shaming</div>
+          <div class="insight-text">Never reference what they haven't done. Only reference what's possible and waiting. The platform is always here   it never sulks.</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-label">No loud celebration</div>
+          <div class="insight-text">Quiet acknowledgment over big applause. "That's real" over "Amazing work!" The dream is serious   treat every step with seriousness.</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-label">No implied judgment</div>
+          <div class="insight-text">Phrases like "no worries" and "that's okay" carry judgment even when they mean kindness. Rewrite anything that implies something needed forgiving.</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-label">Always forward</div>
+          <div class="insight-text">Every message ends with an open door, not a closed loop. The question is always "what's next" not "did you do it."</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-label">One thing at a time</div>
+          <div class="insight-text">Never more than one ask per message. Never more than three questions per session. The space must stay spacious or it stops being a dream and starts being a task.</div>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:1.5rem">
+        <button onclick="showStep(5)" style="padding:10px 24px;background:transparent;color:#3D5C55;border:1px solid rgba(30,58,52,0.2);border-radius:999px;font-size:13px;cursor:pointer;font-family:inherit">Previous</button>
+        <button onclick="showStep(0)" style="padding:10px 24px;background:#6C8F7E;color:#FAF9F6;border:none;border-radius:999px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit">Start again</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- PROMPT GUIDE -->
+<div class="section" id="section-promptguide">
+  <div class="page-header">
+    <div class="page-eyebrow">dreamsedge Internal Reference</div>
+    <div class="page-title">Prompt Guide</div>
+    <div class="page-desc">A practical reference for the content team. Use this before writing any copy   headlines, emails, in-app messages, social posts, or CTAs. Every piece of dreamsedge copy must pass the tests on this page before it ships.</div>
+  </div>
+
+  <div style="padding:2rem 3rem;max-width:960px">
+
+    <!-- THE ONE TEST -->
+    <div class="content-block">
+      <div class="section-title">The one test</div>
+      <div style="border:2px solid #6C8F7E;border-radius:12px;padding:1.5rem 2rem;background:#FAF9F6">
+        <div style="font-size:18px;font-weight:500;color:#1E3A34;margin-bottom:8px">Does this pull the person forward without importing fear, shame, urgency, or the suggestion that something is wrong with them?</div>
+        <div style="font-size:14px;color:#3D5C55;line-height:1.7">If yes, it can ship. If no, rewrite it. Every word, every message, every headline goes through this test first. There are no exceptions.</div>
+      </div>
+    </div>
+
+    <!-- BRAND VOICE -->
+    <div class="content-block">
+      <div class="section-title">Brand voice in practice</div>
+      <div class="insight-grid">
+        <div class="insight-card">
+          <div class="insight-label">Warm, not gushing</div>
+          <div class="insight-text">Care is felt through restraint, not volume. "That's real." not "That's incredible!!"   The quieter the celebration, the more it means.</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-label">Precise, not rigid</div>
+          <div class="insight-text">Every word is chosen but nothing feels forced. If a sentence could be shorter and mean the same thing, make it shorter.</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-label">Invitational, not preachy</div>
+          <div class="insight-text">Open a door, never push someone through it. The copy creates the invitation   what happens next is always the person's choice.</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-label">Grounded, not esoteric</div>
+          <div class="insight-text">Spiritual depth is felt, never announced. No "manifest your destiny." No "align your energy." Language of light, grounded in lived reality.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COPY CHECKLIST -->
+    <div class="content-block">
+      <div class="section-title">Copy checklist   run every piece through this</div>
+      <div class="voice-notes">
+        <div class="voice-note"><strong>1. Does it pull forward?</strong> Read the last sentence. Does it point somewhere or does it close a loop? Good dreamsedge copy always leaves a door open.</div>
+        <div class="voice-note"><strong>2. Is there any urgency?</strong> Check for: "now," "don't wait," "finally," "before it's too late," "last chance," or any countdown energy. Remove every instance.</div>
+        <div class="voice-note"><strong>3. Does it imply something is wrong?</strong> Check for: "stuck," "lost," "broken," "holding you back," "stopping you," "haven't yet." Replace with forward language.</div>
+        <div class="voice-note"><strong>4. Is the sentence shorter than it needs to be?</strong> Cut anything that doesn't carry weight. dreamsedge copy is spacious   white space in sentences, not just on the page.</div>
+        <div class="voice-note"><strong>5. Does it sound like dreamsedge?</strong> Read it out loud. If it sounds like any other self-help platform or like a marketer wrote it, rewrite it. dreamsedge has one voice: calm, warm, unhurried, and completely sincere. That voice belongs to the brand, not to any individual.</div>
+        <div class="voice-note"><strong>6. Is there a persona match?</strong> Check which persona this is written for and cross-reference the say/never say list in the persona section. One wrong word can break trust that took weeks to build.</div>
+        <div class="voice-note"><strong>7. Does it need an exclamation mark?</strong> The answer is almost always no. dreamsedge copy earns its energy through precision, not punctuation.</div>
+      </div>
+    </div>
+
+    <!-- REWRITES TABLE -->
+    <div class="content-block">
+      <div class="section-title">Common rewrites</div>
+      <div style="border:1px solid rgba(30,58,52,0.12);border-radius:10px;overflow:hidden">
+        <div style="display:grid;grid-template-columns:1fr 1fr;background:#1E3A34;padding:10px 16px">
+          <div style="font-size:11px;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;color:rgba(250,249,246,0.6)">Instead of</div>
+          <div style="font-size:11px;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;color:rgba(250,249,246,0.6)">Use this</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;padding:12px 16px;border-bottom:1px solid rgba(30,58,52,0.08);background:#FAF9F6">
+          <div style="font-size:13px;color:#8B4513">"Start your journey today"</div>
+          <div style="font-size:13px;color:#1E3A34">"Begin when you're ready"</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;padding:12px 16px;border-bottom:1px solid rgba(30,58,52,0.08);background:#F0EDE4">
+          <div style="font-size:13px;color:#8B4513">"Don't let fear hold you back"</div>
+          <div style="font-size:13px;color:#1E3A34">"The next step is already there"</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;padding:12px 16px;border-bottom:1px solid rgba(30,58,52,0.08);background:#FAF9F6">
+          <div style="font-size:13px;color:#8B4513">"It's time to finally chase your dreams"</div>
+          <div style="font-size:13px;color:#1E3A34">"Your dream has been waiting. Now there's a place for it."</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;padding:12px 16px;border-bottom:1px solid rgba(30,58,52,0.08);background:#F0EDE4">
+          <div style="font-size:13px;color:#8B4513">"Join thousands of dreamers"</div>
+          <div style="font-size:13px;color:#1E3A34">"You don't have to do this alone"</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;padding:12px 16px;border-bottom:1px solid rgba(30,58,52,0.08);background:#FAF9F6">
+          <div style="font-size:13px;color:#8B4513">"No worries if you haven't started"</div>
+          <div style="font-size:13px;color:#1E3A34">"The dream is exactly where you left it"</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;padding:12px 16px;border-bottom:1px solid rgba(30,58,52,0.08);background:#F0EDE4">
+          <div style="font-size:13px;color:#8B4513">"Unlock your potential"</div>
+          <div style="font-size:13px;color:#1E3A34">"You already have everything you need"</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;padding:12px 16px;border-bottom:1px solid rgba(30,58,52,0.08);background:#FAF9F6">
+          <div style="font-size:13px;color:#8B4513">"Reinvent yourself"</div>
+          <div style="font-size:13px;color:#1E3A34">"Begin the next chapter"</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;padding:12px 16px;border-bottom:1px solid rgba(30,58,52,0.08);background:#F0EDE4">
+          <div style="font-size:13px;color:#8B4513">"Amazing work!"</div>
+          <div style="font-size:13px;color:#1E3A34">"That's real. It counts."</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;padding:12px 16px;background:#FAF9F6">
+          <div style="font-size:13px;color:#8B4513">"Follow your passion"</div>
+          <div style="font-size:13px;color:#1E3A34">"Move toward what's true for you"</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TONE BY FORMAT -->
+    <div class="content-block">
+      <div class="section-title">Tone by format</div>
+      <div class="channel-grid">
+        <div class="channel-card">
+          <div class="channel-name">In-app messages</div>
+          <div class="channel-text">Shortest format, highest stakes. One sentence where possible. Never more than three. Every word must earn its place. No filler warmth.</div>
+        </div>
+        <div class="channel-card">
+          <div class="channel-name">Email subject lines</div>
+          <div class="channel-text">Should feel like a quiet tap on the shoulder from someone who knows them. Never clickbait, never urgency. "Your dream has been patient." not "Don't miss this."</div>
+        </div>
+        <div class="channel-card">
+          <div class="channel-name">Email body</div>
+          <div class="channel-text">One idea per email. Conversational paragraphs, no bullet points. Read it out loud   if it sounds like a newsletter, rewrite it until it sounds like a letter.</div>
+        </div>
+        <div class="channel-card">
+          <div class="channel-name">Social captions</div>
+          <div class="channel-text">Instagram: single thought, spacious. LinkedIn: insight with an edge, forward-looking. Never post for volume. Post when there's something real to say.</div>
+        </div>
+        <div class="channel-card">
+          <div class="channel-name">CTAs</div>
+          <div class="channel-text">Should feel like an invitation, not a button. "Begin here." "Name your dream." "Take one step." Never "Sign up now" or "Get started today."</div>
+        </div>
+        <div class="channel-card">
+          <div class="channel-name">Error and edge states</div>
+          <div class="channel-text">Even when something goes wrong technically, the tone stays warm and unhurried. "Something got lost   let's try that again." Never cold system language.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUICK REFERENCE -->
+    <div class="content-block">
+      <div class="section-title">Quick reference   words that belong and words that don't</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="say-card yes">
+          <div class="say-label">dreamsedge vocabulary</div>
+          <div class="say-item">Begin / beginning</div>
+          <div class="say-item">Real / that's real</div>
+          <div class="say-item">Move toward</div>
+          <div class="say-item">Name it / give it a name</div>
+          <div class="say-item">Direction / clarity</div>
+          <div class="say-item">Your own pace</div>
+          <div class="say-item">The work / the dream</div>
+          <div class="say-item">Private / spacious</div>
+          <div class="say-item">Together / alongside</div>
+          <div class="say-item">Foundation / what you've built</div>
+        </div>
+        <div class="say-card no">
+          <div class="say-label">Words that never belong</div>
+          <div class="say-item">Hustle / grind / crush it</div>
+          <div class="say-item">Passion / purpose (without grounding)</div>
+          <div class="say-item">Stuck / lost / broken</div>
+          <div class="say-item">Finally / at last / it's time</div>
+          <div class="say-item">Unlock / unleash / level up</div>
+          <div class="say-item">Transformation / reinvention</div>
+          <div class="say-item">Journey (overused, hollow)</div>
+          <div class="say-item">Amazing / incredible / fantastic</div>
+          <div class="say-item">Don't wait / act now / limited time</div>
+          <div class="say-item">Authentic self / true self</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</main>
+</div>
+
+<script>
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
+  document.getElementById('section-' + id).classList.add('active');
+  const navEl = document.getElementById('nav-' + id);
+  if (navEl) navEl.classList.add('active');
+  const colors = { p1:'var(--p1)', p2:'var(--p2)', p3:'var(--p3)', p4:'var(--p4)', p5:'var(--p5)', onboarding:'#6C8F7E', promptguide:'#F2B880' };
+  if (navEl) navEl.style.borderLeftColor = colors[id] || 'transparent';
+  document.querySelector('.main').scrollTop = 0;
+}
+
+function showStep(idx) {
+  const steps = document.querySelectorAll('.ob-step');
+  const btns = document.querySelectorAll('.ob-step-btn');
+  const total = steps.length;
+  steps.forEach((s,i) => { s.style.display = i===idx ? 'block' : 'none'; s.classList.toggle('on', i===idx); });
+  btns.forEach((b,i) => {
+    const on = i===idx;
+    b.style.background = on ? '#E9E4D8' : 'transparent';
+    b.style.color = on ? '#1E3A34' : '#7A9490';
+    b.style.fontWeight = on ? '500' : '400';
+    b.style.borderColor = on ? 'rgba(30,58,52,0.3)' : 'rgba(30,58,52,0.15)';
+  });
+  const pct = Math.round(((idx+1)/total)*100);
+  const bar = document.getElementById('ob-progress');
+  if (bar) bar.style.width = pct + '%';
+}
+
+function showSplit(idx) {
+  const panels = document.querySelectorAll('.split-panel');
+  const btns = document.querySelectorAll('.split-btn');
+  const colors = ['var(--p1)','var(--p2)','var(--p3)','var(--p4)','var(--p5)'];
+  const lightColors = ['var(--p1-light)','var(--p2-light)','var(--p3-light)','var(--p4-light)','var(--p5-light)'];
+  panels.forEach((p,i) => { p.style.display = i===idx ? 'block' : 'none'; });
+  btns.forEach((b,i) => {
+    if (i===idx) {
+      b.style.background = lightColors[i]; b.style.color = colors[i];
+      b.style.borderColor = colors[i]; b.style.fontWeight = '500';
+    } else {
+      b.style.background = 'transparent'; b.style.color = '#7A9490';
+      b.style.borderColor = 'rgba(30,58,52,0.15)'; b.style.fontWeight = '400';
+    }
+  });
+}
+
+function showTab(personaId, tabIdx) {
+  const tabs = document.querySelectorAll('#tabs-' + personaId + ' .tab-btn');
+  const panels = document.querySelectorAll('#section-' + personaId + ' .tab-panel');
+  tabs.forEach((t, i) => {
+    t.classList.toggle('on', i === tabIdx);
+    if (i === tabIdx) {
+      const colors = { p1:'var(--p1)', p2:'var(--p2)', p3:'var(--p3)', p4:'var(--p4)', p5:'var(--p5)' };
+      t.style.borderBottomColor = colors[personaId];
+      t.style.borderBottomWidth = '2px';
+      t.style.borderBottomStyle = 'solid';
+    } else {
+      t.style.borderBottomColor = 'transparent';
+    }
+  });
+  panels.forEach((p, i) => p.classList.toggle('on', i === tabIdx));
+}
+</script>
+</body>
+</html>
